@@ -28,6 +28,8 @@
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "name": "STUDIO 93",
+    "legalName": "IKIGAI PROJECTS s. r. o.",
+    "identifier": { "@type": "PropertyValue", "propertyID": "IČO", "value": "57431311" },
     "description": "Správa sociálnych sietí, tvorba obsahu, reels, TikTok a platená reklama pre biznisy na Liptove.",
     "url": "https://studio93.sk/",
     "image": "https://studio93.sk/assets/og-image.png",
@@ -47,7 +49,9 @@
 <body>
   <a class="skip" href="#main" data-en="Skip to content">Preskočiť na obsah</a>
   <div class="grain" aria-hidden="true"></div>
+  <!-- custom cursor vypnutý — na zapnutie odkomentuj aj blok v main.js
   <div class="cursor" aria-hidden="true"><span></span></div>
+  -->
 
   <!-- ============ NAV ============ -->
   <header class="nav">
@@ -57,7 +61,7 @@
         <a href="#sluzby" data-en="Services">Služby</a>
         <a href="#prace" data-en="Work">Práce</a>
         <a href="#proces" data-en="Process">Proces</a>
-        <a href="#baliky" data-en="Pricing">Balíky</a>
+        <a href="#cena" data-en="Pricing">Cena</a>
         <a href="#o-nas" data-en="About">O nás</a>
         <a href="#kontakt" data-en="Contact">Kontakt</a>
       </nav>
@@ -288,76 +292,152 @@
       </div>
     </section>
 
-    <!-- ============ 6 BALÍKY ============ -->
-    <section class="light" id="baliky" aria-labelledby="baliky-title">
+    <!-- ============ 6 CENA / KALKULAČKA ============ -->
+    <section class="light" id="cena" aria-labelledby="cena-title">
       <div class="wrap">
         <header class="sec-head reveal">
-          <div class="sec-head__top"><span class="marker" data-en="pricing">balíky</span><span class="label">93 / 04</span></div>
-          <h2 id="baliky-title" data-en="Pick<br>your drop">Vyber si<br>svoj drop</h2>
-          <p class="lead" data-en="Monthly packages, no hidden fees. Prices are indicative — we'll give you the final one after a consultation.">Mesačné balíky bez skrytých poplatkov. Ceny sú orientačné — finálnu ti povieme po konzultácii.</p>
+          <div class="sec-head__top"><span class="marker" data-en="pricing">cena</span><span class="label">93 / 04</span></div>
+          <h2 id="cena-title" data-en="Build<br>your drop">Vyskladaj si<br>svoj drop</h2>
+          <p class="lead" data-en="Click together what you need and see an indicative price right away. We'll send you the exact quote within 24 hours.">Naklikaj si, čo potrebuješ, a hneď uvidíš orientačnú cenu. Presnú ponuku ti pošleme do 24 hodín.</p>
         </header>
 
-        <!-- PLACEHOLDER: ceny (XXX €) doplň -->
-        <div class="prices">
-          <article class="price reveal">
-            <div class="price__tag">
-              <div class="price__brand"><span>STUDIO 93</span><span>DROP 01</span></div>
-              <h3>Štart</h3>
-              <p class="price__size">SIZE S</p>
-              <p class="price__amount"><span data-en="from">od</span> <strong>XXX €</strong> <small data-en="/ month">/ mesiac</small></p>
-              <ul data-en="<li>1 network (IG or FB)</li><li>8 posts a month</li><li>Stories 4× a week</li><li>Basic copywriting</li><li>Monthly report</li>">
-                <li>1 sieť (IG alebo FB)</li><li>8 postov mesačne</li><li>Stories 4× týždenne</li><li>Základný copywriting</li><li>Mesačný report</li>
-              </ul>
-              <p class="price__care" data-en="Composition: 100 % content">Zloženie: 100 % obsah</p>
-              <span class="barcode"></span>
-              <a class="btn btn--dark btn--block" href="#kontakt" data-en="Pick Start">Chcem Štart</a>
-            </div>
-          </article>
+        <!-- PLACEHOLDER: ceny sa nastavujú v main.js (const PRICE) -->
+        <form class="calc" id="calc" novalidate>
+          <div class="calc__main">
 
-          <article class="price price--hot reveal">
-            <span class="sticker" aria-hidden="true">BEST<br>SELLER</span>
-            <div class="price__tag">
-              <div class="price__brand"><span>STUDIO 93</span><span>DROP 02</span></div>
-              <h3 data-en="Growth">Rast</h3>
-              <p class="price__size">SIZE M</p>
-              <p class="price__amount"><span data-en="from">od</span> <strong>XXX €</strong> <small data-en="/ month">/ mesiac</small></p>
-              <ul data-en="<li>2 networks</li><li>12 posts + 4 reels</li><li>1 shoot day a month</li><li>Comments &amp; DMs handled</li><li>Ads up to XXX € budget</li><li>Report + call</li>">
-                <li>2 siete</li><li>12 postov + 4 reels</li><li>1 natáčací deň mesačne</li><li>Správa komentárov a DM</li><li>Reklama do XXX € rozpočtu</li><li>Report + call</li>
-              </ul>
-              <p class="price__care" data-en="Composition: 70 % content, 30 % ads">Zloženie: 70 % obsah, 30 % ads</p>
-              <span class="barcode"></span>
-              <a class="btn btn--dark btn--block" href="#kontakt" data-en="Pick Growth">Chcem Rast</a>
+            <div class="calc__step reveal" role="group" aria-labelledby="calc-s1">
+              <h3 class="calc__title" id="calc-s1"><span class="calc__num">01</span><span data-en="What do you need?">Čo potrebuješ?</span></h3>
+              <div class="svc">
+                <label><input type="checkbox" name="svc" value="social" checked><span class="svc__card"><span class="svc__top">93—01<i class="svc__check"></i></span><strong data-en="Social media">Správa sietí</strong><small data-en="monthly">mesačne</small></span></label>
+                <label><input type="checkbox" name="svc" value="content"><span class="svc__card"><span class="svc__top">93—02<i class="svc__check"></i></span><strong data-en="Photo &amp; video">Foto &amp; video</strong><small data-en="monthly">mesačne</small></span></label>
+                <label><input type="checkbox" name="svc" value="reels"><span class="svc__card"><span class="svc__top">93—03<i class="svc__check"></i></span><strong>Reels &amp; TikTok</strong><small data-en="monthly">mesačne</small></span></label>
+                <label><input type="checkbox" name="svc" value="ads"><span class="svc__card"><span class="svc__top">93—04<i class="svc__check"></i></span><strong data-en="Paid ads">Platená reklama</strong><small data-en="monthly">mesačne</small></span></label>
+                <label><input type="checkbox" name="svc" value="web"><span class="svc__card"><span class="svc__top">93—05<b class="svc__new">NEW</b><i class="svc__check"></i></span><strong>Web design</strong><small data-en="one-off">jednorazovo</small></span></label>
+                <label><input type="checkbox" name="svc" value="strategy"><span class="svc__card"><span class="svc__top">93—06<i class="svc__check"></i></span><strong data-en="Audit &amp; strategy">Audit &amp; stratégia</strong><small data-en="one-off">jednorazovo</small></span></label>
+              </div>
             </div>
-          </article>
 
-          <article class="price reveal">
-            <div class="price__tag">
-              <div class="price__brand"><span>STUDIO 93</span><span>DROP 03</span></div>
-              <h3>Premium</h3>
-              <p class="price__size">SIZE L</p>
-              <p class="price__amount"><span data-en="from">od</span> <strong>XXX €</strong> <small data-en="/ month">/ mesiac</small></p>
-              <ul data-en="<li>3 networks (IG, TT, FB)</li><li>16 posts + 8 reels/TikToks</li><li>2 shoot days a month</li><li>Full ads management</li><li>Quarterly strategy</li><li>Priority support</li>">
-                <li>3 siete (IG, TT, FB)</li><li>16 postov + 8 reels/TikTokov</li><li>2 natáčacie dni mesačne</li><li>Kompletná správa reklám</li><li>Stratégia na kvartál</li><li>Prioritná podpora</li>
-              </ul>
-              <p class="price__care" data-en="Care: hand wash only ;)">Údržba: prať ručne ;)</p>
-              <span class="barcode"></span>
-              <a class="btn btn--dark btn--block" href="#kontakt" data-en="Pick Premium">Chcem Premium</a>
-            </div>
-          </article>
+            <div class="calc__step reveal" role="group" aria-labelledby="calc-s2">
+              <h3 class="calc__title" id="calc-s2"><span class="calc__num">02</span><span data-en="Fine-tune it">Dolaď detaily</span></h3>
+              <p class="calc__empty" data-en="Pick at least one service above." hidden>Vyber hore aspoň jednu službu.</p>
+              <div class="opts">
+                <div class="opt" data-svc="social">
+                  <div class="opt__head"><h4 data-en="Social media management">Správa sociálnych sietí</h4><output class="opt__sum"></output></div>
+                  <div class="opt__row">
+                    <span class="opt__label"><span data-en="Networks">Siete</span><em data-price="social.network" data-unit="net"></em></span>
+                    <div class="chips">
+                      <label class="chip"><input type="checkbox" name="net" value="Instagram" checked><span>Instagram</span></label>
+                      <label class="chip"><input type="checkbox" name="net" value="Facebook"><span>Facebook</span></label>
+                      <label class="chip"><input type="checkbox" name="net" value="TikTok"><span>TikTok</span></label>
+                    </div>
+                  </div>
+                  <label class="opt__row">
+                    <span class="opt__label"><span><span data-en="Posts a month">Postov mesačne</span> · <em data-price="social.post" data-unit="post"></em></span><output data-out="posts"></output></span>
+                    <input class="range" type="range" name="posts" min="4" max="30" step="2" value="12">
+                  </label>
+                  <label class="toggle"><input type="checkbox" name="stories"><i class="sw"></i><span data-en="Stories 3× a week">Stories 3× týždenne</span><em data-price="+social.stories"></em></label>
+                  <label class="toggle"><input type="checkbox" name="community"><i class="sw"></i><span data-en="Comments &amp; DMs handled">Správa komentárov a DM</span><em data-price="+social.community"></em></label>
+                  <p class="opt__note" data-en="Included: copywriting, content plan and a monthly report.">V cene: copywriting, plán obsahu a mesačný report.</p>
+                </div>
 
-          <article class="price price--custom reveal">
-            <div class="price__tag">
-              <div class="price__brand"><span>STUDIO 93</span><span>CUSTOM</span></div>
-              <h3 data-en="Made to measure">Na mieru</h3>
-              <p class="price__size">SIZE XL / ∞</p>
-              <p class="price__amount"><strong data-en="On request">Dohodou</strong></p>
-              <p class="price__text" data-en="A campaign, an event, a grand opening or a one-off shoot? We'll put it together exactly for you.">Kampaň, event, otvorenie prevádzky alebo jednorazový shoot? Poskladáme to presne pre teba.</p>
-              <p class="price__care" data-en="One of one">Kus 1 / 1</p>
-              <span class="barcode"></span>
-              <a class="btn btn--block" href="#kontakt" data-en="Message us">Napíš nám</a>
+                <div class="opt" data-svc="content" hidden>
+                  <div class="opt__head"><h4 data-en="Photo &amp; video">Foto &amp; video</h4><output class="opt__sum"></output></div>
+                  <div class="opt__row opt__row--inline">
+                    <span class="opt__label"><span><span id="calc-days" data-en="Shoot days a month">Natáčacie dni mesačne</span> · <em data-price="content.day" data-unit="day"></em></span></span>
+                    <div class="stepper">
+                      <button class="round" type="button" data-step="-1" aria-label="−1">−</button>
+                      <input type="number" name="days" min="1" max="8" value="1" inputmode="numeric" aria-labelledby="calc-days">
+                      <button class="round" type="button" data-step="1" aria-label="+1">+</button>
+                    </div>
+                  </div>
+                  <label class="toggle"><input type="checkbox" name="drone"><i class="sw"></i><span data-en="Drone shots">Zábery z dronu</span><em data-price="+content.drone" data-unit="day"></em></label>
+                  <p class="opt__note" data-en="Included: prep, shooting, editing and color grading.">V cene: príprava, natáčanie, strih a color grading.</p>
+                </div>
+
+                <div class="opt" data-svc="reels" hidden>
+                  <div class="opt__head"><h4>Reels &amp; TikTok</h4><output class="opt__sum"></output></div>
+                  <label class="opt__row">
+                    <span class="opt__label"><span><span data-en="Videos a month">Videí mesačne</span> · <em data-price="reels.video" data-unit="video"></em></span><output data-out="videos"></output></span>
+                    <input class="range" type="range" name="videos" min="2" max="20" value="4">
+                  </label>
+                  <p class="opt__note" data-en="Included: hook, script, editing, captions and trending audio.">V cene: hook, scenár, strih, titulky a trendové audio.</p>
+                </div>
+
+                <div class="opt" data-svc="ads" hidden>
+                  <div class="opt__head"><h4 data-en="Paid ads">Platená reklama</h4><output class="opt__sum"></output></div>
+                  <div class="opt__row">
+                    <span class="opt__label" data-en="Platforms">Platformy</span>
+                    <div class="chips">
+                      <label class="chip"><input type="checkbox" name="plat" value="Meta" checked><span>Meta (FB + IG)</span></label>
+                      <label class="chip"><input type="checkbox" name="plat" value="TikTok"><span>TikTok</span></label>
+                    </div>
+                  </div>
+                  <label class="opt__row">
+                    <span class="opt__label"><span data-en="Monthly ad budget">Mesačný rozpočet na reklamu</span><output data-out="budget"></output></span>
+                    <input class="range" type="range" name="budget" min="100" max="5000" step="50" value="300">
+                  </label>
+                  <p class="opt__note" data-en="You pay the budget directly to Meta / TikTok. We only charge for running the campaigns.">Rozpočet platíš priamo Mete / TikToku. My si účtujeme len správu kampaní.</p>
+                </div>
+
+                <div class="opt" data-svc="web" hidden>
+                  <div class="opt__head"><h4>Web design</h4><output class="opt__sum"></output></div>
+                  <div class="opt__row">
+                    <span class="opt__label" data-en="Type of website">Typ webu</span>
+                    <div class="seg">
+                      <label><input type="radio" name="webtype" value="landing" checked><span><b>Landing page</b><small data-en="1 scrolling page">1 stránka</small><em data-price="web.landing"></em></span></label>
+                      <label><input type="radio" name="webtype" value="business"><span><b data-en="Business site">Firemný web</b><small data-en="up to 6 pages">do 6 podstránok</small><em data-price="web.business"></em></span></label>
+                      <label><input type="radio" name="webtype" value="eshop"><span><b>E-shop</b><small data-en="up to 50 products">do 50 produktov</small><em data-price="web.eshop"></em></span></label>
+                    </div>
+                  </div>
+                  <label class="toggle"><input type="checkbox" name="webcopy"><i class="sw"></i><span data-en="Website copy">Texty na web</span><em data-price="+web.copy"></em></label>
+                  <label class="toggle"><input type="checkbox" name="seo"><i class="sw"></i><span data-en="SEO basics">SEO základ</span><em data-price="+web.seo"></em></label>
+                  <label class="toggle"><input type="checkbox" name="weblang"><i class="sw"></i><span data-en="Second language">Druhá jazyková verzia</span><em data-price="+web.lang"></em></label>
+                  <label class="toggle"><input type="checkbox" name="care"><i class="sw"></i><span data-en="Hosting &amp; maintenance">Hosting a údržba</span><em data-price="+web.care" data-unit="mo"></em></label>
+                  <p class="opt__note" data-en="Included: custom design, mobile version, contact form and Instagram feed.">V cene: dizajn na mieru, mobilná verzia, kontaktný formulár a napojenie na Instagram.</p>
+                </div>
+
+                <div class="opt" data-svc="strategy" hidden>
+                  <div class="opt__head"><h4 data-en="Audit &amp; strategy">Audit &amp; stratégia</h4><output class="opt__sum"></output></div>
+                  <p class="opt__note" data-en="An audit of your profiles, a look at the competition and a content strategy for the next 3 months. You walk away with a plan even if we don't continue together.">Audit tvojich profilov, pohľad na konkurenciu a obsahová stratégia na 3 mesiace. Odchádzaš s plánom, aj keby sme ďalej nepokračovali.</p>
+                </div>
+              </div>
             </div>
-          </article>
-        </div>
+
+            <div class="calc__step reveal" role="group" aria-labelledby="calc-s3" data-term>
+              <h3 class="calc__title" id="calc-s3"><span class="calc__num">03</span><span data-en="For how long?">Na ako dlho?</span></h3>
+              <div class="seg seg--term">
+                <label><input type="radio" name="term" value="1" checked><span><b data-en="1 month">1 mesiac</b><small data-en="no commitment">bez viazanosti</small></span></label>
+                <label><input type="radio" name="term" value="3"><span><b data-en="3 months">3 mesiace</b><small data-disc="3"></small></span></label>
+                <label><input type="radio" name="term" value="6"><span><b data-en="6 months">6 mesiacov</b><small data-disc="6"></small></span></label>
+                <label><input type="radio" name="term" value="12"><span><b data-en="12 months">12 mesiacov</b><small data-disc="12"></small></span></label>
+              </div>
+              <p class="opt__note" data-en="The discount applies to all monthly services.">Zľava platí na všetky mesačné služby.</p>
+            </div>
+          </div>
+
+          <a class="calc__bar" href="#calc-receipt"><span data-en="Estimate">Odhad</span><strong data-bar></strong><i aria-hidden="true">↓</i></a>
+
+          <aside class="calc__side" aria-labelledby="calc-rc">
+            <div class="receipt reveal" id="calc-receipt">
+              <div class="receipt__head">
+                <span class="receipt__logo">STUDIO 93</span>
+                <span id="calc-rc" data-en="Price estimate · Liptov">Cenový odhad · Liptov</span>
+                <span class="receipt__meta"><span data-date></span><span data-no></span></span>
+              </div>
+              <ul class="receipt__lines" data-lines></ul>
+              <div class="receipt__totals">
+                <p class="receipt__total" data-total="m"><span data-en="Monthly">Mesačne</span><strong>0 €</strong></p>
+                <p class="receipt__total" data-total="o"><span data-en="One-off">Jednorazovo</span><strong>0 €</strong></p>
+              </div>
+              <p class="receipt__note" data-note></p>
+              <span class="barcode"></span>
+              <button class="btn btn--dark btn--block" type="button" data-cta><span data-en="I want this quote">Chcem túto ponuku</span> <i aria-hidden="true">→</i></button>
+              <!-- PLACEHOLDER: ak budete platcami DPH, dopíš „bez DPH“ -->
+              <p class="receipt__fine" data-en="Indicative prices. You'll get the final quote within 24 hours.">Ceny sú orientačné. Finálnu ponuku dostaneš do 24 hodín.</p>
+              <p class="sr-only" aria-live="polite" data-live></p>
+            </div>
+          </aside>
+        </form>
       </div>
     </section>
 
@@ -458,7 +538,7 @@
         <div class="faq__list reveal">
           <details>
             <summary data-en="How much does social media management cost?">Koľko stojí správa sociálnych sietí?</summary>
-            <p data-en="Packages start at XXX € a month. We'll tell you the exact price after a short consultation — it depends on the number of networks, the amount of content and whether we also run ads.">Balíky začínajú od XXX € mesačne. Presnú cenu ti povieme po krátkej konzultácii — záleží na počte sietí, množstve obsahu a či ideme aj do reklamy.</p>
+            <p data-en="It depends on the number of networks, the amount of content and whether we also run ads. Work out an indicative price in our <a href='#cena'>calculator</a> — we'll confirm the exact one after a short consultation.">Záleží na počte sietí, množstve obsahu a či ideme aj do reklamy. Orientačnú cenu si vyrátaš v našej <a href="#cena">kalkulačke</a> — presnú ti potvrdíme po krátkej konzultácii.</p>
           </details>
           <details>
             <summary data-en="When will I see results?">Kedy uvidím výsledky?</summary>
@@ -542,7 +622,7 @@
         <nav aria-label="Pätička">
           <a href="#sluzby" data-en="Services">Služby</a>
           <a href="#prace" data-en="Work">Práce</a>
-          <a href="#baliky" data-en="Pricing">Balíky</a>
+          <a href="#cena" data-en="Pricing">Cena</a>
           <a href="#kontakt" data-en="Contact">Kontakt</a>
         </nav>
         <div class="footer__social">
@@ -557,6 +637,8 @@
         <span>© <span id="year">2025</span> STUDIO 93</span>
         <span>93 / LIPTOV — EST. 2025</span>
       </div>
+      <!-- PLACEHOLDER: DIČ / IČ DPH doplň, keď ich budeš mať -->
+      <p class="footer__company">IKIGAI PROJECTS s. r. o. · Ulica Jozefa Adamca 9983/24, 917 01 Trnava · <span data-en="Company ID">IČO</span> 57431311 · <span data-en="Registered in the Commercial Register of the District Court Trnava, section Sro, file no. 62136/T">Zapísaná v Obchodnom registri Okresného súdu Trnava, oddiel Sro, vložka č. 62136/T</span></p>
     </div>
   </footer>
 </body>
