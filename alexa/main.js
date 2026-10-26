@@ -131,11 +131,8 @@ form.addEventListener('submit', async e => {
   const t = msg[root.lang] || msg.sk;
   const data = new FormData(form);
   if (data.get('_honey')) return; // bot filled the hidden field
-  // FormSubmit takes JSON; multi-value fields (siete) get joined so none are lost
+  // goes to our Apps Script (form-mailer/Code.gs); multi-value fields (siete) get joined so none are lost
   const body = {
-    _subject: `Nový dopyt — ${data.get('firma') || data.get('meno')}`,
-    _template: 'table',
-    _replyto: data.get('email'),
     meno: data.get('meno'),
     firma: data.get('firma') || '-',
     email: data.get('email'),
@@ -149,10 +146,11 @@ form.addEventListener('submit', async e => {
     const res = await fetch(form.action, {
       method: 'POST',
       body: JSON.stringify(body),
-      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      // text/plain keeps it a "simple" request — Apps Script can't answer a CORS preflight
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
     });
     const json = await res.json().catch(() => ({}));
-    if (!res.ok || String(json.success) !== 'true') throw new Error(json.message || res.status);
+    if (!res.ok || !json.ok) throw new Error(json.error || res.status);
     form.reset();
     status.classList.add('ok');
     status.textContent = t.ok;
@@ -169,22 +167,26 @@ const plSk = (n, one, few, many) => `${n} ${n === 1 ? one : n < 5 ? few : many}`
 const plEn = (n, word) => `${n} ${word}${n === 1 ? '' : 's'}`;
 const CALC = {
   sk: {
-    social: 'Správa sociálnych sietí', content: 'Foto & video', reels: 'Reels & TikTok', ads: 'Platená reklama',
-    web: 'Web design', care: 'Hosting a údržba webu', strategy: 'Audit & stratégia',
+    social: 'Správa sociálnych sietí', content: 'Tvorba obsahu', reels: 'Reels & TikTok', copy: 'Copywriting', ads: 'Platená reklama',
+    strategy: 'Stratégia a reporting', web: 'Web design', care: 'Hosting a údržba webu',
+    copytype: { captions: 'popisky', stories: 'stories', bio: 'bio a profil', adcopy: 'reklamné texty', newsletter: 'newsletter' },
+    audit: 'audit', report: 'mesačný report', call: 'strategický call',
     landing: 'Landing page', business: 'Firemný web', eshop: 'E-shop',
     posts: n => plSk(n, 'post', 'posty', 'postov'), days: n => plSk(n, 'natáčací deň', 'natáčacie dni', 'natáčacích dní'),
     videos: n => plSk(n, 'video', 'videá', 'videí'), months: n => plSk(n, 'mesiac', 'mesiace', 'mesiacov'),
-    community: 'komentáre a DM', drone: 'dron', copy: 'texty', lang: '2 jazyky',
+    community: 'komentáre a DM', drone: 'dron', webcopy: 'texty', lang: '2 jazyky',
     mo: '/ mes.', once: 'jednorazovo', monthly: 'Mesačne', oneoff: 'Jednorazovo', spend: 'Rozpočet', term: 'Spolupráca',
     empty: 'Zatiaľ prázdne — vyber si službu.',
     intro: 'Ahoj, mám záujem o ponuku z kalkulačky:',
   },
   en: {
-    social: 'Social media management', content: 'Photo & video', reels: 'Reels & TikTok', ads: 'Paid ads',
-    web: 'Web design', care: 'Hosting & maintenance', strategy: 'Audit & strategy',
+    social: 'Social media management', content: 'Content creation', reels: 'Reels & TikTok', copy: 'Copywriting', ads: 'Paid ads',
+    strategy: 'Strategy & reporting', web: 'Web design', care: 'Hosting & maintenance',
+    copytype: { captions: 'captions', stories: 'stories', bio: 'bio & profile', adcopy: 'ad copy', newsletter: 'newsletter' },
+    audit: 'audit', report: 'monthly report', call: 'strategy call',
     landing: 'Landing page', business: 'Business site', eshop: 'E-shop',
     posts: n => plEn(n, 'post'), days: n => plEn(n, 'shoot day'), videos: n => plEn(n, 'video'), months: n => plEn(n, 'month'),
-    community: 'comments & DMs', drone: 'drone', copy: 'copy', lang: '2 languages',
+    community: 'comments & DMs', drone: 'drone', webcopy: 'copy', lang: '2 languages',
     mo: '/ mo', once: 'one-off', monthly: 'Monthly', oneoff: 'One-off', spend: 'Budget', term: 'Commitment',
     empty: 'Nothing here yet — pick a service.',
     intro: "Hi, I'm interested in a quote from your calculator:",
@@ -203,12 +205,13 @@ const quote = () => {
   if (on.includes('social')) add('social', [d.getAll('net').join(', '), t.posts(+d.get('posts')), d.has('stories') && 'stories', d.has('community') && t.community]);
   if (on.includes('content')) add('content', [t.days(clamp(calc.elements.days)), d.has('drone') && t.drone]);
   if (on.includes('reels')) add('reels', [t.videos(+d.get('videos'))]);
+  if (on.includes('copy')) add('copy', [d.getAll('copytype').map(k => t.copytype[k]).join(', ')]);
   if (on.includes('ads')) add('ads', [d.getAll('plat').join(', ')]);
+  if (on.includes('strategy')) add('strategy', [d.has('audit') && t.audit, d.has('report') && t.report, d.has('call') && t.call]);
   if (on.includes('web')) {
-    add('web', [t[d.get('webtype')], d.has('webcopy') && t.copy, d.has('seo') && 'SEO', d.has('weblang') && t.lang], false);
+    add('web', [t[d.get('webtype')], d.has('webcopy') && t.webcopy, d.has('seo') && 'SEO', d.has('weblang') && t.lang], false);
     if (d.has('care')) add('web', [], true, t.care);
   }
-  if (on.includes('strategy')) add('strategy', [], false);
 
   const i = +d.get('spend'), monthly = lines.some(l => l.monthly);
   const spend = `${SPEND[i].toLocaleString(loc())} €${i === SPEND.length - 1 ? ' +' : ''}`;
@@ -244,8 +247,8 @@ const renderCalc = () => {
 
 calc.addEventListener('input', e => {
   const el = e.target;
-  // keep at least one network / ad platform ticked
-  if ((el.name === 'net' || el.name === 'plat') && !$(`[name="${el.name}"]:checked`, calc)) el.checked = true;
+  // keep at least one network / ad platform / copy type ticked
+  if (['net', 'plat', 'copytype'].includes(el.name) && !$(`[name="${el.name}"]:checked`, calc)) el.checked = true;
   renderCalc();
 });
 calc.addEventListener('change', e => {

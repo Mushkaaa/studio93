@@ -171,6 +171,12 @@
             <p data-en="A clear plan, a monthly report and numbers without fluff. You'll know what works and why.">Jasný plán, mesačný report a čísla bez omáčok. Vieš, čo funguje a prečo.</p>
             <div class="tag-card__foot"><span class="barcode"></span><span>06</span></div>
           </article>
+          <article class="tag-card reveal">
+            <div class="tag-card__top"><span class="tag-card__hole"></span><span>ART. 93—07</span><span>WEB · E-SHOP</span></div>
+            <h3>Web design</h3>
+            <p data-en="Websites and e-shops that look as good as your feed. Fast, mobile-first and ready to sell.">Weby a e-shopy, ktoré vyzerajú rovnako dobre ako tvoj feed. Rýchle, mobilné a pripravené predávať.</p>
+            <div class="tag-card__foot"><span class="barcode"></span><span>07</span></div>
+          </article>
         </div>
       </div>
     </section>
@@ -307,12 +313,13 @@
             <div class="calc__step reveal" role="group" aria-labelledby="calc-s1">
               <h3 class="calc__title" id="calc-s1"><span class="calc__num">01</span><span data-en="What do you need?">Čo potrebuješ?</span></h3>
               <div class="svc">
-                <label><input type="checkbox" name="svc" value="social" checked><span class="svc__card"><span class="svc__top">93—01<i class="svc__check"></i></span><strong data-en="Social media">Správa sietí</strong><small data-en="monthly">mesačne</small></span></label>
-                <label><input type="checkbox" name="svc" value="content"><span class="svc__card"><span class="svc__top">93—02<i class="svc__check"></i></span><strong data-en="Photo &amp; video">Foto &amp; video</strong><small data-en="monthly">mesačne</small></span></label>
+                <label><input type="checkbox" name="svc" value="social" checked><span class="svc__card"><span class="svc__top">93—01<i class="svc__check"></i></span><strong data-en="Social media management">Správa sociálnych sietí</strong><small data-en="monthly">mesačne</small></span></label>
+                <label><input type="checkbox" name="svc" value="content"><span class="svc__card"><span class="svc__top">93—02<i class="svc__check"></i></span><strong data-en="Content creation">Tvorba obsahu</strong><small data-en="monthly">mesačne</small></span></label>
                 <label><input type="checkbox" name="svc" value="reels"><span class="svc__card"><span class="svc__top">93—03<i class="svc__check"></i></span><strong>Reels &amp; TikTok</strong><small data-en="monthly">mesačne</small></span></label>
-                <label><input type="checkbox" name="svc" value="ads"><span class="svc__card"><span class="svc__top">93—04<i class="svc__check"></i></span><strong data-en="Paid ads">Platená reklama</strong><small data-en="monthly">mesačne</small></span></label>
-                <label><input type="checkbox" name="svc" value="web"><span class="svc__card"><span class="svc__top">93—05<i class="svc__check"></i></span><strong>Web design</strong><small data-en="one-off">jednorazovo</small></span></label>
-                <label><input type="checkbox" name="svc" value="strategy"><span class="svc__card"><span class="svc__top">93—06<i class="svc__check"></i></span><strong data-en="Audit &amp; strategy">Audit &amp; stratégia</strong><small data-en="one-off">jednorazovo</small></span></label>
+                <label><input type="checkbox" name="svc" value="copy"><span class="svc__card"><span class="svc__top">93—04<i class="svc__check"></i></span><strong>Copywriting</strong><small data-en="monthly">mesačne</small></span></label>
+                <label><input type="checkbox" name="svc" value="ads"><span class="svc__card"><span class="svc__top">93—05<i class="svc__check"></i></span><strong data-en="Paid ads">Platená reklama</strong><small data-en="monthly">mesačne</small></span></label>
+                <label><input type="checkbox" name="svc" value="strategy"><span class="svc__card"><span class="svc__top">93—06<i class="svc__check"></i></span><strong data-en="Strategy &amp; reporting">Stratégia a reporting</strong><small data-en="monthly">mesačne</small></span></label>
+                <label><input type="checkbox" name="svc" value="web"><span class="svc__card"><span class="svc__top">93—07<i class="svc__check"></i></span><strong>Web design</strong><small data-en="one-off">jednorazovo</small></span></label>
               </div>
             </div>
 
@@ -340,7 +347,7 @@
                 </div>
 
                 <div class="opt" data-svc="content" hidden>
-                  <div class="opt__head"><h4 data-en="Photo &amp; video">Foto &amp; video</h4></div>
+                  <div class="opt__head"><h4 data-en="Content creation">Tvorba obsahu</h4></div>
                   <div class="opt__row opt__row--inline">
                     <span class="opt__label" id="calc-days" data-en="Shoot days a month">Natáčacie dni mesačne</span>
                     <div class="stepper">
@@ -360,6 +367,21 @@
                     <input class="range" type="range" name="videos" min="2" max="20" value="4">
                   </label>
                   <p class="opt__note" data-en="Included: hook, script, editing, captions and trending audio.">V cene: hook, scenár, strih, titulky a trendové audio.</p>
+                </div>
+
+                <div class="opt" data-svc="copy" hidden>
+                  <div class="opt__head"><h4>Copywriting</h4></div>
+                  <div class="opt__row">
+                    <span class="opt__label" data-en="What should we write?">Čo ti máme písať?</span>
+                    <div class="chips">
+                      <label class="chip"><input type="checkbox" name="copytype" value="captions" checked><span data-en="Captions">Popisky</span></label>
+                      <label class="chip"><input type="checkbox" name="copytype" value="stories"><span>Stories</span></label>
+                      <label class="chip"><input type="checkbox" name="copytype" value="bio"><span data-en="Bio &amp; profile">Bio a profil</span></label>
+                      <label class="chip"><input type="checkbox" name="copytype" value="adcopy"><span data-en="Ad copy">Reklamné texty</span></label>
+                      <label class="chip"><input type="checkbox" name="copytype" value="newsletter"><span>Newsletter</span></label>
+                    </div>
+                  </div>
+                  <p class="opt__note" data-en="Copy that sounds like a human, not a flyer — in your brand's voice.">Texty, ktoré znejú ako človek, nie ako leták — v tóne tvojej značky.</p>
                 </div>
 
                 <div class="opt" data-svc="ads" hidden>
@@ -392,8 +414,11 @@
                 </div>
 
                 <div class="opt" data-svc="strategy" hidden>
-                  <div class="opt__head"><h4 data-en="Audit &amp; strategy">Audit &amp; stratégia</h4></div>
-                  <p class="opt__note" data-en="An audit of your profiles, a look at the competition and a content strategy for the next 3 months. You walk away with a plan even if we don't continue together.">Audit tvojich profilov, pohľad na konkurenciu a obsahová stratégia na 3 mesiace. Odchádzaš s plánom, aj keby sme ďalej nepokračovali.</p>
+                  <div class="opt__head"><h4 data-en="Strategy &amp; reporting">Stratégia a reporting</h4></div>
+                  <label class="toggle"><input type="checkbox" name="audit" checked><i class="sw"></i><span data-en="Profile &amp; competitor audit">Audit profilov a konkurencie</span></label>
+                  <label class="toggle"><input type="checkbox" name="report" checked><i class="sw"></i><span data-en="Monthly report">Mesačný report</span></label>
+                  <label class="toggle"><input type="checkbox" name="call"><i class="sw"></i><span data-en="Monthly strategy call">Mesačný strategický call</span></label>
+                  <p class="opt__note" data-en="A clear plan and numbers without fluff. You'll know what works and why.">Jasný plán a čísla bez omáčok. Vieš, čo funguje a prečo.</p>
                 </div>
               </div>
             </div>
@@ -584,8 +609,8 @@
           </ul>
         </div>
 
-        <!-- Správy chodia cez formsubmit.co na martinpospisil2000@gmail.com. Prvé odoslanie pošle na ten mail aktivačný link — treba ho raz potvrdiť. -->
-        <form class="form reveal" action="https://formsubmit.co/ajax/martinpospisil2000@gmail.com" method="POST" data-mail="ahoj@studio93.sk">
+        <!-- PLACEHOLDER: nasaď form-mailer/Code.gs ako Google Apps Script web app a vlož sem jeho /exec URL -->
+        <form class="form reveal" action="https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec" method="POST" data-mail="ahoj@studio93.sk">
           <div class="form__row">
             <label class="field"><span data-en="Name *">Meno *</span><input name="meno" autocomplete="name" required></label>
             <label class="field"><span data-en="Business">Firma</span><input name="firma" autocomplete="organization"></label>
