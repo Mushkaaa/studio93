@@ -130,20 +130,29 @@ form.addEventListener('submit', async e => {
   e.preventDefault();
   const t = msg[root.lang] || msg.sk;
   const data = new FormData(form);
-  // ponytail: no backend until a Formspree ID is set — fall back to the visitor's mail app
-  if (form.action.includes('YOUR_FORM_ID')) {
-    const body = ['meno', 'firma', 'email', 'telefon', 'sprava']
-      .map(k => `${k}: ${data.get(k) || '-'}`)
-      .concat(`siete: ${data.getAll('siete').join(', ') || '-'}`)
-      .join('\n');
-    location.href = `mailto:${form.dataset.mail}?subject=${encodeURIComponent('Spolupráca — ' + (data.get('firma') || data.get('meno')))}&body=${encodeURIComponent(body)}`;
-    return;
-  }
+  if (data.get('_honey')) return; // bot filled the hidden field
+  // FormSubmit takes JSON; multi-value fields (siete) get joined so none are lost
+  const body = {
+    _subject: `Nový dopyt — ${data.get('firma') || data.get('meno')}`,
+    _template: 'table',
+    _replyto: data.get('email'),
+    meno: data.get('meno'),
+    firma: data.get('firma') || '-',
+    email: data.get('email'),
+    telefon: data.get('telefon') || '-',
+    siete: data.getAll('siete').join(', ') || '-',
+    sprava: data.get('sprava'),
+  };
   status.className = 'form__status';
   status.textContent = t.sending;
   try {
-    const res = await fetch(form.action, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
-    if (!res.ok) throw new Error(res.status);
+    const res = await fetch(form.action, {
+      method: 'POST',
+      body: JSON.stringify(body),
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+    });
+    const json = await res.json().catch(() => ({}));
+    if (!res.ok || String(json.success) !== 'true') throw new Error(json.message || res.status);
     form.reset();
     status.classList.add('ok');
     status.textContent = t.ok;
