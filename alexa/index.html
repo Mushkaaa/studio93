@@ -44,6 +44,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=Rubik+Spray+Paint&family=Sniglet:wght@800&display=swap">
   <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
   <script src="main.js" defer></script>
 </head>
 <body>
@@ -154,9 +156,9 @@
             <div class="tag-card__foot"><span class="barcode"></span><span>03</span></div>
           </article>
           <article class="tag-card reveal">
-            <div class="tag-card__top"><span class="tag-card__hole"></span><span>ART. 93—04</span><span>TEXT</span></div>
-            <h3>Copywriting</h3>
-            <p data-en="Copy that sounds like a human, not a flyer. Captions, CTAs, bio and stories.">Texty, ktoré znejú ako človek, nie ako leták. Popisky, CTA, bio aj stories.</p>
+            <div class="tag-card__top"><span class="tag-card__hole"></span><span>ART. 93—04</span><span>WEB · E-SHOP</span></div>
+            <h3>Web design</h3>
+            <p data-en="Websites and e-shops that look as good as your feed. Fast, mobile-first and ready to sell.">Weby a e-shopy, ktoré vyzerajú rovnako dobre ako tvoj feed. Rýchle, mobilné a pripravené predávať.</p>
             <div class="tag-card__foot"><span class="barcode"></span><span>04</span></div>
           </article>
           <article class="tag-card reveal">
@@ -171,18 +173,12 @@
             <p data-en="A clear plan, a monthly report and numbers without fluff. You'll know what works and why.">Jasný plán, mesačný report a čísla bez omáčok. Vieš, čo funguje a prečo.</p>
             <div class="tag-card__foot"><span class="barcode"></span><span>06</span></div>
           </article>
-          <article class="tag-card reveal">
-            <div class="tag-card__top"><span class="tag-card__hole"></span><span>ART. 93—07</span><span>WEB · E-SHOP</span></div>
-            <h3>Web design</h3>
-            <p data-en="Websites and e-shops that look as good as your feed. Fast, mobile-first and ready to sell.">Weby a e-shopy, ktoré vyzerajú rovnako dobre ako tvoj feed. Rýchle, mobilné a pripravené predávať.</p>
-            <div class="tag-card__foot"><span class="barcode"></span><span>07</span></div>
-          </article>
         </div>
       </div>
     </section>
 
     <!-- ============ 4 PORTFÓLIO ============ -->
-    <section class="light lila" id="prace" aria-labelledby="prace-title">
+    <section class="light lila reel" id="prace" aria-labelledby="prace-title">
       <div class="wrap">
         <header class="sec-head reveal">
           <div class="sec-head__top"><span class="marker" data-en="work">práce</span><span class="label">93 / 02</span></div>
@@ -191,65 +187,54 @@
         </header>
 
         <!-- PLACEHOLDER: fotky, klienti aj čísla nižšie sú ukážkové — nahraď reálnymi prácami a výsledkami -->
-        <div class="feed phone reveal">
-          <div class="feed__head">
-            <span class="feed__avatar logo-tile" aria-hidden="true"><span class="logo93"><b>93</b></span></span>
-            <div>
-              <strong>studio93.liptov</strong>
-              <span data-en="Social media agency · Liptov">Social media agentúra · Liptov</span>
-            </div>
-            <a class="feed__follow" href="https://www.instagram.com/studio93.liptov/" target="_blank" rel="noopener" data-en="Follow">Sledovať</a>
-          </div>
-          <ul class="feed__grid">
-            <li class="feed__item" tabindex="0" data-cursor="Pozri">
+        <div class="stage">
+          <div class="ring" id="ring">
+            <div class="card">
               <img class="film ph" src="https://picsum.photos/seed/s93-cafe/600/750" width="600" height="750" loading="lazy" alt="Ukážka: obsah pre kaviareň v Liptovskom Mikuláši">
-              <span class="feed__stat">+340 %</span>
-              <div class="feed__over"><strong>+340 %</strong><span data-en="reach in 3 months">dosah za 3 mesiace</span><small data-en="Café · Liptovský Mikuláš">Kaviareň · Liptovský Mikuláš</small></div>
-            </li>
-            <li class="feed__item" tabindex="0" data-cursor="Pozri">
+              <div class="card__top"><small data-en="Café · Liptovský Mikuláš">Kaviareň · Liptovský Mikuláš</small></div>
+              <div class="card__bot"><strong>+340 %</strong><span data-en="reach in 3 months">dosah za 3 mesiace</span></div>
+            </div>
+            <div class="card">
               <img class="bw ph" src="https://picsum.photos/seed/s93-barber/600/750?grayscale" width="600" height="750" loading="lazy" alt="Ukážka: reel pre barbershop v Ružomberku">
-              <svg class="feed__reel" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v16H4z M4 9h16 M9 4l3 5 M14 4l3 5 M10 12.5v5l4.5-2.5z"/></svg>
-              <span class="feed__stat">1,2 M</span>
-              <div class="feed__over"><strong>1,2 M</strong><span data-en="reel views">videní reelu</span><small>Barbershop · Ružomberok</small></div>
-            </li>
-            <li class="feed__item" tabindex="0" data-cursor="Pozri">
+              <div class="card__top"><small>Barbershop · Ružomberok</small><span class="card__play" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M4 2.5v11l9-5.5z" fill="currentColor"/></svg></span></div>
+              <div class="card__bot"><strong>1,2 M</strong><span data-en="reel views">videní reelu</span></div>
+            </div>
+            <div class="card">
               <img class="film ph" src="https://picsum.photos/seed/s93-pension/600/750" width="600" height="750" loading="lazy" alt="Ukážka: kampaň pre horský penzión">
-              <span class="feed__stat">+68 %</span>
-              <div class="feed__over"><strong>+68 %</strong><span data-en="bookings from Instagram">rezervácií z Instagramu</span><small data-en="Mountain lodge · Liptovský Hrádok">Penzión · Liptovský Hrádok</small></div>
-            </li>
-            <li class="feed__item" tabindex="0" data-cursor="Pozri">
+              <div class="card__top"><small data-en="Mountain lodge · Liptovský Hrádok">Penzión · Liptovský Hrádok</small></div>
+              <div class="card__bot"><strong>+68 %</strong><span data-en="bookings from Instagram">rezervácií z Instagramu</span></div>
+            </div>
+            <div class="card">
               <img class="film ph" src="https://picsum.photos/seed/s93-food/600/750" width="600" height="750" loading="lazy" alt="Ukážka: foto obsah pre reštauráciu">
-              <span class="feed__stat">+2 100</span>
-              <div class="feed__over"><strong>+2 100</strong><span data-en="new followers">nových followerov</span><small data-en="Restaurant · Liptovský Mikuláš">Reštaurácia · Liptovský Mikuláš</small></div>
-            </li>
-            <li class="feed__item" tabindex="0" data-cursor="Pozri">
+              <div class="card__top"><small data-en="Restaurant · Liptovský Mikuláš">Reštaurácia · Liptovský Mikuláš</small></div>
+              <div class="card__bot"><strong>+2 100</strong><span data-en="new followers">nových followerov</span></div>
+            </div>
+            <div class="card">
               <img class="bw ph" src="https://picsum.photos/seed/s93-gym/600/750?grayscale" width="600" height="750" loading="lazy" alt="Ukážka: reklamná kampaň pre fitness centrum">
-              <span class="feed__stat">45 leadov</span>
-              <div class="feed__over"><strong data-en="45 leads">45 leadov</strong><span data-en="per month from ads">mesačne z reklamy</span><small data-en="Gym · Ružomberok">Fitko · Ružomberok</small></div>
-            </li>
-            <li class="feed__item" tabindex="0" data-cursor="Pozri">
+              <div class="card__top"><small data-en="Gym · Ružomberok">Fitko · Ružomberok</small></div>
+              <div class="card__bot"><strong data-en="45 leads">45 leadov</strong><span data-en="per month from ads">mesačne z reklamy</span></div>
+            </div>
+            <div class="card">
               <img class="film ph" src="https://picsum.photos/seed/s93-boutique/600/750" width="600" height="750" loading="lazy" alt="Ukážka: produktové foto pre butik">
-              <svg class="feed__reel" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v16H4z M4 9h16 M9 4l3 5 M14 4l3 5 M10 12.5v5l4.5-2.5z"/></svg>
-              <span class="feed__stat">×3</span>
-              <div class="feed__over"><strong>×3</strong><span data-en="online orders">objednávky cez IG</span><small data-en="Boutique · Liptovský Mikuláš">Butik · Liptovský Mikuláš</small></div>
-            </li>
-            <li class="feed__item" tabindex="0" data-cursor="Pozri">
+              <div class="card__top"><small data-en="Boutique · Liptovský Mikuláš">Butik · Liptovský Mikuláš</small><span class="card__play" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M4 2.5v11l9-5.5z" fill="currentColor"/></svg></span></div>
+              <div class="card__bot"><strong>×3</strong><span data-en="online orders">objednávky cez IG</span></div>
+            </div>
+            <div class="card">
               <img class="bw ph" src="https://picsum.photos/seed/s93-garage/600/750?grayscale" width="600" height="750" loading="lazy" alt="Ukážka: TikTok obsah pre autoservis">
-              <span class="feed__stat">0 → 8k</span>
-              <div class="feed__over"><strong>0 → 8k</strong><span data-en="TikTok followers">sledujúcich na TikToku</span><small data-en="Car workshop · Liptov">Autoservis · Liptov</small></div>
-            </li>
-            <li class="feed__item" tabindex="0" data-cursor="Pozri">
+              <div class="card__top"><small data-en="Car workshop · Liptov">Autoservis · Liptov</small></div>
+              <div class="card__bot"><strong>0 → 8k</strong><span data-en="TikTok followers">sledujúcich na TikToku</span></div>
+            </div>
+            <div class="card">
               <img class="film ph" src="https://picsum.photos/seed/s93-ski/600/750" width="600" height="750" loading="lazy" alt="Ukážka: sezónna kampaň pre lyžiarske stredisko">
-              <span class="feed__stat">+190 %</span>
-              <div class="feed__over"><strong>+190 %</strong><span data-en="engagement in season">interakcie v sezóne</span><small data-en="Ski resort · Liptov">Skipark · Liptov</small></div>
-            </li>
-            <li class="feed__item" tabindex="0" data-cursor="Pozri">
+              <div class="card__top"><small data-en="Ski resort · Liptov">Skipark · Liptov</small></div>
+              <div class="card__bot"><strong>+190 %</strong><span data-en="engagement in season">interakcie v sezóne</span></div>
+            </div>
+            <div class="card">
               <img class="film ph" src="https://picsum.photos/seed/s93-event/600/750" width="600" height="750" loading="lazy" alt="Ukážka: promo pre lokálny event">
-              <svg class="feed__reel" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v16H4z M4 9h16 M9 4l3 5 M14 4l3 5 M10 12.5v5l4.5-2.5z"/></svg>
-              <span class="feed__stat">SOLD OUT</span>
-              <div class="feed__over"><strong>SOLD OUT</strong><span data-en="in 9 days">za 9 dní</span><small>Event · Ružomberok</small></div>
-            </li>
-          </ul>
+              <div class="card__top"><small>Event · Ružomberok</small><span class="card__play" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M4 2.5v11l9-5.5z" fill="currentColor"/></svg></span></div>
+              <div class="card__bot"><strong>SOLD OUT</strong><span data-en="in 9 days">za 9 dní</span></div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -316,11 +301,9 @@
                 <label><input type="checkbox" name="svc" value="social" checked><span class="svc__card"><span class="svc__top">93—01<i class="svc__check"></i></span><strong data-en="Social media management">Správa sociálnych sietí</strong><small data-en="monthly">mesačne</small></span></label>
                 <label><input type="checkbox" name="svc" value="content"><span class="svc__card"><span class="svc__top">93—02<i class="svc__check"></i></span><strong data-en="Content creation">Tvorba obsahu</strong><small data-en="monthly">mesačne</small></span></label>
                 <label><input type="checkbox" name="svc" value="reels"><span class="svc__card"><span class="svc__top">93—03<i class="svc__check"></i></span><strong>Reels &amp; TikTok</strong><small data-en="monthly">mesačne</small></span></label>
-                <label><input type="checkbox" name="svc" value="copy"><span class="svc__card"><span class="svc__top">93—04<i class="svc__check"></i></span><strong>Copywriting</strong><small data-en="monthly">mesačne</small></span></label>
+                <label><input type="checkbox" name="svc" value="web"><span class="svc__card"><span class="svc__top">93—04<i class="svc__check"></i></span><strong>Web design</strong><small data-en="one-off">jednorazovo</small></span></label>
                 <label><input type="checkbox" name="svc" value="ads"><span class="svc__card"><span class="svc__top">93—05<i class="svc__check"></i></span><strong data-en="Paid ads">Platená reklama</strong><small data-en="monthly">mesačne</small></span></label>
-                <label><input type="checkbox" name="svc" value="strategy"><span class="svc__card"><span class="svc__top">93—06<i class="svc__check"></i></span><strong data-en="Strategy &amp; reporting">Stratégia a reporting</strong><small data-en="monthly">mesačne</small></span></label>
-                <label><input type="checkbox" name="svc" value="web"><span class="svc__card"><span class="svc__top">93—07<i class="svc__check"></i></span><strong>Web design</strong><small data-en="one-off">jednorazovo</small></span></label>
-              </div>
+                <label><input type="checkbox" name="svc" value="strategy"><span class="svc__card"><span class="svc__top">93—06<i class="svc__check"></i></span><strong data-en="Strategy &amp; reporting">Stratégia a reporting</strong><small data-en="monthly">mesačne</small></span></label>              </div>
             </div>
 
             <div class="calc__step reveal" role="group" aria-labelledby="calc-s2">
@@ -367,21 +350,6 @@
                     <input class="range" type="range" name="videos" min="2" max="20" value="4">
                   </label>
                   <p class="opt__note" data-en="Included: hook, script, editing, captions and trending audio.">V cene: hook, scenár, strih, titulky a trendové audio.</p>
-                </div>
-
-                <div class="opt" data-svc="copy" hidden>
-                  <div class="opt__head"><h4>Copywriting</h4></div>
-                  <div class="opt__row">
-                    <span class="opt__label" data-en="What should we write?">Čo ti máme písať?</span>
-                    <div class="chips">
-                      <label class="chip"><input type="checkbox" name="copytype" value="captions" checked><span data-en="Captions">Popisky</span></label>
-                      <label class="chip"><input type="checkbox" name="copytype" value="stories"><span>Stories</span></label>
-                      <label class="chip"><input type="checkbox" name="copytype" value="bio"><span data-en="Bio &amp; profile">Bio a profil</span></label>
-                      <label class="chip"><input type="checkbox" name="copytype" value="adcopy"><span data-en="Ad copy">Reklamné texty</span></label>
-                      <label class="chip"><input type="checkbox" name="copytype" value="newsletter"><span>Newsletter</span></label>
-                    </div>
-                  </div>
-                  <p class="opt__note" data-en="Copy that sounds like a human, not a flyer — in your brand's voice.">Texty, ktoré znejú ako človek, nie ako leták — v tóne tvojej značky.</p>
                 </div>
 
                 <div class="opt" data-svc="ads" hidden>

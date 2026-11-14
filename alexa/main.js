@@ -91,18 +91,51 @@ if (fine) {
       });
       el.addEventListener('pointerleave', () => { el.style.transform = ''; });
     });
-
-    $$('.feed__item').forEach(el => {
-      el.addEventListener('pointermove', e => {
-        const r = el.getBoundingClientRect();
-        const px = (e.clientX - r.left) / r.width - .5;
-        const py = (e.clientY - r.top) / r.height - .5;
-        el.style.transform = `rotateY(${px * 14}deg) rotateX(${-py * 14}deg) scale(1.03)`;
-        el.style.zIndex = 2;
-      });
-      el.addEventListener('pointerleave', () => { el.style.transform = ''; el.style.zIndex = ''; });
-    });
   }
+}
+
+/* ---------- práce: 3D reel ring ---------- */
+const ringEl = $('#ring');
+const ringCards = [...ringEl.children];
+const ring = { rot: 0, drag: 0, R: 0 };
+const layoutRing = () => {
+  const n = ringCards.length;
+  ring.R = (ringEl.offsetWidth / 2) / Math.tan(Math.PI / n) + (innerWidth < 600 ? 24 : 60);
+  ringCards.forEach((c, i) => { c.style.transform = `rotateY(${i * 360 / n}deg) translateZ(${ring.R}px)`; });
+};
+const drawRing = () => {
+  ringEl.style.transform = `translateZ(${-ring.R}px) rotateX(-6deg) rotateY(${ring.rot + ring.drag}deg)`;
+};
+layoutRing();
+drawRing();
+let ringResize;
+addEventListener('resize', () => {
+  clearTimeout(ringResize);
+  ringResize = setTimeout(() => { layoutRing(); drawRing(); }, 150);
+});
+
+if (window.gsap && window.ScrollTrigger && !calm) {
+  gsap.registerPlugin(ScrollTrigger);
+  // 'bottom bottom' = 'top top' when the section fits the screen; on short screens it pins once the ring is fully in view
+  gsap.to(ring, {
+    rot: -360, ease: 'none', onUpdate: drawRing,
+    scrollTrigger: { trigger: '.reel', start: 'bottom bottom', end: '+=180%', pin: true, scrub: 1 },
+  });
+  let dragging = false, lastX = 0;
+  const release = () => {
+    if (!dragging) return;
+    dragging = false;
+    gsap.to(ring, { drag: 0, duration: 1.2, ease: 'elastic.out(1,0.5)', onUpdate: drawRing });
+  };
+  $('.stage').addEventListener('pointerdown', e => { dragging = true; lastX = e.clientX; gsap.killTweensOf(ring, 'drag'); });
+  addEventListener('pointerup', release);
+  addEventListener('pointercancel', release);
+  addEventListener('pointermove', e => {
+    if (!dragging) return;
+    ring.drag += (e.clientX - lastX) * .25;
+    lastX = e.clientX;
+    drawRing();
+  });
 }
 
 /* ---------- testimonial slider ---------- */
@@ -167,9 +200,8 @@ const plSk = (n, one, few, many) => `${n} ${n === 1 ? one : n < 5 ? few : many}`
 const plEn = (n, word) => `${n} ${word}${n === 1 ? '' : 's'}`;
 const CALC = {
   sk: {
-    social: 'Správa sociálnych sietí', content: 'Tvorba obsahu', reels: 'Reels & TikTok', copy: 'Copywriting', ads: 'Platená reklama',
+    social: 'Správa sociálnych sietí', content: 'Tvorba obsahu', reels: 'Reels & TikTok', ads: 'Platená reklama',
     strategy: 'Stratégia a reporting', web: 'Web design', care: 'Hosting a údržba webu',
-    copytype: { captions: 'popisky', stories: 'stories', bio: 'bio a profil', adcopy: 'reklamné texty', newsletter: 'newsletter' },
     audit: 'audit', report: 'mesačný report', call: 'strategický call',
     landing: 'Landing page', business: 'Firemný web', eshop: 'E-shop',
     posts: n => plSk(n, 'post', 'posty', 'postov'), days: n => plSk(n, 'natáčací deň', 'natáčacie dni', 'natáčacích dní'),
@@ -180,9 +212,8 @@ const CALC = {
     intro: 'Ahoj, mám záujem o ponuku z kalkulačky:',
   },
   en: {
-    social: 'Social media management', content: 'Content creation', reels: 'Reels & TikTok', copy: 'Copywriting', ads: 'Paid ads',
+    social: 'Social media management', content: 'Content creation', reels: 'Reels & TikTok', ads: 'Paid ads',
     strategy: 'Strategy & reporting', web: 'Web design', care: 'Hosting & maintenance',
-    copytype: { captions: 'captions', stories: 'stories', bio: 'bio & profile', adcopy: 'ad copy', newsletter: 'newsletter' },
     audit: 'audit', report: 'monthly report', call: 'strategy call',
     landing: 'Landing page', business: 'Business site', eshop: 'E-shop',
     posts: n => plEn(n, 'post'), days: n => plEn(n, 'shoot day'), videos: n => plEn(n, 'video'), months: n => plEn(n, 'month'),
@@ -205,7 +236,6 @@ const quote = () => {
   if (on.includes('social')) add('social', [d.getAll('net').join(', '), t.posts(+d.get('posts')), d.has('stories') && 'stories', d.has('community') && t.community]);
   if (on.includes('content')) add('content', [t.days(clamp(calc.elements.days)), d.has('drone') && t.drone]);
   if (on.includes('reels')) add('reels', [t.videos(+d.get('videos'))]);
-  if (on.includes('copy')) add('copy', [d.getAll('copytype').map(k => t.copytype[k]).join(', ')]);
   if (on.includes('ads')) add('ads', [d.getAll('plat').join(', ')]);
   if (on.includes('strategy')) add('strategy', [d.has('audit') && t.audit, d.has('report') && t.report, d.has('call') && t.call]);
   if (on.includes('web')) {
@@ -247,8 +277,8 @@ const renderCalc = () => {
 
 calc.addEventListener('input', e => {
   const el = e.target;
-  // keep at least one network / ad platform / copy type ticked
-  if (['net', 'plat', 'copytype'].includes(el.name) && !$(`[name="${el.name}"]:checked`, calc)) el.checked = true;
+  // keep at least one network / ad platform ticked
+  if (['net', 'plat'].includes(el.name) && !$(`[name="${el.name}"]:checked`, calc)) el.checked = true;
   renderCalc();
 });
 calc.addEventListener('change', e => {

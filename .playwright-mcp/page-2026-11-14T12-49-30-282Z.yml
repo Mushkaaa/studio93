@@ -1,0 +1,634 @@
+- generic [active] [ref=e1]:
+  - link "Preskočiť na obsah" [ref=e2] [cursor=pointer]:
+    - /url: "#main"
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - link "STUDIO 93 — domov" [ref=e5] [cursor=pointer]:
+        - /url: "#top"
+        - generic [ref=e6]: "93"
+      - navigation "Hlavná navigácia" [ref=e8]:
+        - link "Služby" [ref=e9] [cursor=pointer]:
+          - /url: "#sluzby"
+        - link "Práce" [ref=e10] [cursor=pointer]:
+          - /url: "#prace"
+        - link "Proces" [ref=e11] [cursor=pointer]:
+          - /url: "#proces"
+        - link "Cena" [ref=e12] [cursor=pointer]:
+          - /url: "#cena"
+        - link "O nás" [ref=e13] [cursor=pointer]:
+          - /url: "#o-nas"
+        - link "Kontakt" [ref=e14] [cursor=pointer]:
+          - /url: "#kontakt"
+      - generic [ref=e15]:
+        - button "Switch to English" [ref=e16] [cursor=pointer]: EN
+        - link "Poďme na to" [ref=e17] [cursor=pointer]:
+          - /url: "#kontakt"
+  - main [ref=e18]:
+    - region "Tvoj biznis. Náš feed." [ref=e19]:
+      - img "Nočný filmový záber z Liptova" [ref=e21]
+      - generic [ref=e23]:
+        - generic [ref=e26]:
+          - generic [ref=e27]: "93"
+          - generic [ref=e28]: STUDIO
+        - generic [ref=e29]:
+          - generic [ref=e30]: DROP 1.0
+          - generic [ref=e31]: 93 / LIPTOV
+          - generic [ref=e32]: EST. 2025
+        - heading "Tvoj biznis. Náš feed." [level=1] [ref=e33]:
+          - text: Tvoj biznis.Náš
+          - generic [ref=e34]: feed.
+        - paragraph [ref=e35]: Robíme Instagram, TikTok a Facebook pre lokálne biznisy z Liptova. Foto, video, reels, texty aj reklamy — od prvého nápadu po výsledky, ktoré vidíš v číslach.
+        - generic [ref=e36]:
+          - link "Chcem spoluprácu" [ref=e37] [cursor=pointer]:
+            - /url: "#kontakt"
+            - generic [aria-hidden] [ref=e39]: →
+          - link "Pozrieť práce" [ref=e40] [cursor=pointer]:
+            - /url: "#prace"
+      - generic [aria-hidden] [ref=e41]:
+        - generic [ref=e42]: 49.08°N — 19.61°E
+        - generic [ref=e43]: SCROLL ↓
+        - generic [ref=e44]: FRAME 01 / 93
+    - img "Instagram, TikTok, Reels, Foto, Video, Ads, Stratégia" [ref=e45]:
+      - generic [aria-hidden] [ref=e46]:
+        - generic [ref=e47]: INSTAGRAM
+        - generic [ref=e48]: •
+        - generic [ref=e49]: TIKTOK
+        - generic [ref=e50]: •
+        - generic [ref=e51]: REELS
+        - generic [ref=e52]: •
+        - generic [ref=e53]: FOTO
+        - generic [ref=e54]: •
+        - generic [ref=e55]: VIDEO
+        - generic [ref=e56]: •
+        - generic [ref=e57]: ADS
+        - generic [ref=e58]: •
+        - generic [ref=e59]: STRATÉGIA
+        - generic [ref=e60]: •
+        - generic [ref=e61]: INSTAGRAM
+        - generic [ref=e62]: •
+        - generic [ref=e63]: TIKTOK
+        - generic [ref=e64]: •
+        - generic [ref=e65]: REELS
+        - generic [ref=e66]: •
+        - generic [ref=e67]: FOTO
+        - generic [ref=e68]: •
+        - generic [ref=e69]: VIDEO
+        - generic [ref=e70]: •
+        - generic [ref=e71]: ADS
+        - generic [ref=e72]: •
+        - generic [ref=e73]: STRATÉGIA
+        - generic [ref=e74]: •
+        - generic [ref=e75]: INSTAGRAM
+        - generic [ref=e76]: •
+        - generic [ref=e77]: TIKTOK
+        - generic [ref=e78]: •
+        - generic [ref=e79]: REELS
+        - generic [ref=e80]: •
+        - generic [ref=e81]: FOTO
+        - generic [ref=e82]: •
+        - generic [ref=e83]: VIDEO
+        - generic [ref=e84]: •
+        - generic [ref=e85]: ADS
+        - generic [ref=e86]: •
+        - generic [ref=e87]: STRATÉGIA
+        - generic [ref=e88]: •
+        - generic [ref=e89]: INSTAGRAM
+        - generic [ref=e90]: •
+        - generic [ref=e91]: TIKTOK
+        - generic [ref=e92]: •
+        - generic [ref=e93]: REELS
+        - generic [ref=e94]: •
+        - generic [ref=e95]: FOTO
+        - generic [ref=e96]: •
+        - generic [ref=e97]: VIDEO
+        - generic [ref=e98]: •
+        - generic [ref=e99]: ADS
+        - generic [ref=e100]: •
+        - generic [ref=e101]: STRATÉGIA
+        - generic [ref=e102]: •
+    - region "Čo pre teba robíme" [ref=e103]:
+      - generic [ref=e104]:
+        - generic [ref=e105]:
+          - generic [ref=e106]:
+            - generic [ref=e107]: služby
+            - generic [ref=e108]: 93 / 01
+          - heading "Čo pre teba robíme" [level=2] [ref=e109]: Čo pre tebarobíme
+          - paragraph [ref=e110]:
+            - text: Žiadne šablóny z internetu. Každý post, reel aj kampaň šijeme
+            - mark [ref=e111]: na mieru
+            - text: tvojmu biznisu.
+        - generic [ref=e112]:
+          - article [ref=e113]:
+            - generic [ref=e114]:
+              - generic [ref=e116]: ART. 93—01
+              - generic [ref=e117]: IG · FB · TT
+            - heading "Správa sociálnych sietí" [level=3] [ref=e118]
+            - paragraph [ref=e119]: Plánujeme, postujeme, odpisujeme. Tvoj profil žije, aj keď ty makáš v prevádzke.
+            - generic [ref=e120]: "01"
+          - article [ref=e123]:
+            - generic [ref=e124]:
+              - generic [ref=e126]: ART. 93—02
+              - generic [ref=e127]: FOTO / VIDEO
+            - heading "Tvorba obsahu" [level=3] [ref=e128]
+            - paragraph [ref=e129]: Prídeme, nafotíme, natočíme. Filmový look, ktorý zastaví scroll.
+            - generic [ref=e130]: "02"
+          - article [ref=e133]:
+            - generic [ref=e134]:
+              - generic [ref=e136]: ART. 93—03
+              - generic [ref=e137]: 9:16
+            - heading "Reels & TikTok" [level=3] [ref=e138]
+            - paragraph [ref=e139]: Krátke videá s hookom v prvej sekunde. Trendy chytáme skôr, než vyhoria.
+            - generic [ref=e140]: "03"
+          - article [ref=e143]:
+            - generic [ref=e144]:
+              - generic [ref=e146]: ART. 93—04
+              - generic [ref=e147]: WEB · E-SHOP
+            - heading "Web design" [level=3] [ref=e148]
+            - paragraph [ref=e149]: Weby a e-shopy, ktoré vyzerajú rovnako dobre ako tvoj feed. Rýchle, mobilné a pripravené predávať.
+            - generic [ref=e150]: "04"
+          - article [ref=e153]:
+            - generic [ref=e154]:
+              - generic [ref=e156]: ART. 93—05
+              - generic [ref=e157]: META · TT ADS
+            - heading "Platená reklama" [level=3] [ref=e158]
+            - paragraph [ref=e159]: Meta a TikTok Ads cielené na ľudí z okolia. Každé euro má svoju úlohu.
+            - generic [ref=e160]: "05"
+          - article [ref=e163]:
+            - generic [ref=e164]:
+              - generic [ref=e166]: ART. 93—06
+              - generic [ref=e167]: DATA
+            - heading "Stratégia a reporting" [level=3] [ref=e168]
+            - paragraph [ref=e169]: Jasný plán, mesačný report a čísla bez omáčok. Vieš, čo funguje a prečo.
+            - generic [ref=e170]: "06"
+    - region "Feed, ktorý predáva" [ref=e173]:
+      - generic [ref=e174]:
+        - generic [ref=e175]:
+          - generic [ref=e176]:
+            - generic [ref=e177]: práce
+            - generic [ref=e178]: 93 / 02
+          - heading "Feed, ktorý predáva" [level=2] [ref=e179]: Feed, ktorýpredáva
+          - paragraph [ref=e180]: Výber z prác pre biznisy pod Tatrami. Za každou fotkou je číslo.
+        - generic [ref=e181]:
+          - generic [ref=e182]:
+            - generic [ref=e184]: "93"
+            - generic [ref=e186]:
+              - strong [ref=e187]: studio93.liptov
+              - generic [ref=e188]: Social media agentúra · Liptov
+            - link "Sledovať" [ref=e189] [cursor=pointer]:
+              - /url: https://www.instagram.com/studio93.liptov/
+          - list [ref=e190]:
+            - listitem [ref=e191]:
+              - 'img "Ukážka: obsah pre kaviareň v Liptovskom Mikuláši" [ref=e192]'
+              - generic [ref=e193]: +340 %
+              - generic [ref=e194]:
+                - strong [ref=e195]: +340 %
+                - generic [ref=e196]: dosah za 3 mesiace
+                - generic [ref=e197]: Kaviareň · Liptovský Mikuláš
+            - listitem [ref=e198]:
+              - 'img "Ukážka: reel pre barbershop v Ružomberku" [ref=e199]'
+              - generic [ref=e202]: 1,2 M
+              - generic [ref=e203]:
+                - strong [ref=e204]: 1,2 M
+                - generic [ref=e205]: videní reelu
+                - generic [ref=e206]: Barbershop · Ružomberok
+            - listitem [ref=e207]:
+              - 'img "Ukážka: kampaň pre horský penzión" [ref=e208]'
+              - generic [ref=e209]: +68 %
+              - generic [ref=e210]:
+                - strong [ref=e211]: +68 %
+                - generic [ref=e212]: rezervácií z Instagramu
+                - generic [ref=e213]: Penzión · Liptovský Hrádok
+            - listitem [ref=e214]:
+              - 'img "Ukážka: foto obsah pre reštauráciu" [ref=e215]'
+              - generic [ref=e216]: +2 100
+              - generic [ref=e217]:
+                - strong [ref=e218]: +2 100
+                - generic [ref=e219]: nových followerov
+                - generic [ref=e220]: Reštaurácia · Liptovský Mikuláš
+            - listitem [ref=e221]:
+              - 'img "Ukážka: reklamná kampaň pre fitness centrum" [ref=e222]'
+              - generic [ref=e223]: 45 leadov
+              - generic [ref=e224]:
+                - strong [ref=e225]: 45 leadov
+                - generic [ref=e226]: mesačne z reklamy
+                - generic [ref=e227]: Fitko · Ružomberok
+            - listitem [ref=e228]:
+              - 'img "Ukážka: produktové foto pre butik" [ref=e229]'
+              - generic [ref=e232]: ×3
+              - generic [ref=e233]:
+                - strong [ref=e234]: ×3
+                - generic [ref=e235]: objednávky cez IG
+                - generic [ref=e236]: Butik · Liptovský Mikuláš
+            - listitem [ref=e237]:
+              - 'img "Ukážka: TikTok obsah pre autoservis" [ref=e238]'
+              - generic [ref=e239]: 0 → 8k
+              - generic [ref=e240]:
+                - strong [ref=e241]: 0 → 8k
+                - generic [ref=e242]: sledujúcich na TikToku
+                - generic [ref=e243]: Autoservis · Liptov
+            - listitem [ref=e244]:
+              - 'img "Ukážka: sezónna kampaň pre lyžiarske stredisko" [ref=e245]'
+              - generic [ref=e246]: +190 %
+              - generic [ref=e247]:
+                - strong [ref=e248]: +190 %
+                - generic [ref=e249]: interakcie v sezóne
+                - generic [ref=e250]: Skipark · Liptov
+            - listitem [ref=e251]:
+              - 'img "Ukážka: promo pre lokálny event" [ref=e252]'
+              - generic [ref=e255]: SOLD OUT
+              - generic [ref=e256]:
+                - strong [ref=e257]: SOLD OUT
+                - generic [ref=e258]: za 9 dní
+                - generic [ref=e259]: Event · Ružomberok
+    - generic [ref=e261]:
+      - generic [ref=e262]: SCROLL STOP
+      - generic [ref=e263]: ✶
+      - generic [ref=e264]: HOOK
+      - generic [ref=e265]: ✶
+      - generic [ref=e266]: DOSAH
+      - generic [ref=e267]: ✶
+      - generic [ref=e268]: ENGAGEMENT
+      - generic [ref=e269]: ✶
+      - generic [ref=e270]: LEADY
+      - generic [ref=e271]: ✶
+      - generic [ref=e272]: RAST
+      - generic [ref=e273]: ✶
+      - generic [ref=e274]: SCROLL STOP
+      - generic [ref=e275]: ✶
+      - generic [ref=e276]: HOOK
+      - generic [ref=e277]: ✶
+      - generic [ref=e278]: DOSAH
+      - generic [ref=e279]: ✶
+      - generic [ref=e280]: ENGAGEMENT
+      - generic [ref=e281]: ✶
+      - generic [ref=e282]: LEADY
+      - generic [ref=e283]: ✶
+      - generic [ref=e284]: RAST
+      - generic [ref=e285]: ✶
+      - generic [ref=e286]: SCROLL STOP
+      - generic [ref=e287]: ✶
+      - generic [ref=e288]: HOOK
+      - generic [ref=e289]: ✶
+      - generic [ref=e290]: DOSAH
+      - generic [ref=e291]: ✶
+      - generic [ref=e292]: ENGAGEMENT
+      - generic [ref=e293]: ✶
+      - generic [ref=e294]: LEADY
+      - generic [ref=e295]: ✶
+      - generic [ref=e296]: RAST
+      - generic [ref=e297]: ✶
+      - generic [ref=e298]: SCROLL STOP
+      - generic [ref=e299]: ✶
+      - generic [ref=e300]: HOOK
+      - generic [ref=e301]: ✶
+      - generic [ref=e302]: DOSAH
+      - generic [ref=e303]: ✶
+      - generic [ref=e304]: ENGAGEMENT
+      - generic [ref=e305]: ✶
+      - generic [ref=e306]: LEADY
+      - generic [ref=e307]: ✶
+      - generic [ref=e308]: RAST
+      - generic [ref=e309]: ✶
+    - region "Ako pracujeme" [ref=e310]:
+      - generic [ref=e311]:
+        - generic [ref=e312]:
+          - generic [ref=e313]:
+            - generic [ref=e314]: proces
+            - generic [ref=e315]: 93 / 03
+          - heading "Ako pracujeme" [level=2] [ref=e316]: Akopracujeme
+          - paragraph [ref=e317]: Štyri kroky. Žiadne meetingy kvôli meetingom, žiadne PDF na päťdesiat strán.
+        - list [ref=e318]:
+          - listitem [ref=e319]:
+            - generic [ref=e320]: "01"
+            - heading "Konzultácia" [level=3] [ref=e321]
+            - paragraph [ref=e322]: Kafe, rozhovor, tvoj biznis. Zistíme, kde si teraz a kam chceš ísť.
+            - text: →
+          - listitem [ref=e323]:
+            - generic [ref=e324]: "02"
+            - heading "Stratégia" [level=3] [ref=e325]
+            - paragraph [ref=e326]: Navrhneme tón, formáty, plán postov a ciele. Všetko čierne na bielom.
+            - text: →
+          - listitem [ref=e327]:
+            - generic [ref=e328]: "03"
+            - heading "Tvorba obsahu" [level=3] [ref=e329]
+            - paragraph [ref=e330]: Natáčačky, fotky, strih, texty. Ty schvaľuješ, my makáme.
+            - text: →
+          - listitem [ref=e331]:
+            - generic [ref=e332]: "04"
+            - heading "Rast a reporting" [level=3] [ref=e333]
+            - paragraph [ref=e334]: Sledujeme čísla, ladíme, škálujeme. Každý mesiac report, ktorému rozumieš.
+    - region "Vyskladaj si svoj drop" [ref=e335]:
+      - generic [ref=e336]:
+        - generic [ref=e337]:
+          - generic [ref=e338]:
+            - generic [ref=e339]: cena
+            - generic [ref=e340]: 93 / 04
+          - heading "Vyskladaj si svoj drop" [level=2] [ref=e341]: Vyskladaj sisvoj drop
+          - paragraph [ref=e342]: Naklikaj si, čo potrebuješ, a povedz nám svoj rozpočet. Ponuku na mieru ti pošleme do 24 hodín.
+        - generic [ref=e343]:
+          - generic [ref=e344]:
+            - group "01 Čo potrebuješ?" [ref=e345]:
+              - heading "01 Čo potrebuješ?" [level=3] [ref=e346]:
+                - generic [ref=e347]: "01"
+                - generic [ref=e348]: Čo potrebuješ?
+              - generic [ref=e349]:
+                - generic [ref=e350] [cursor=pointer]:
+                  - checkbox "93—01 Správa sociálnych sietí mesačne" [checked] [ref=e351]
+                  - generic [ref=e352]:
+                    - generic [ref=e353]: 93—01
+                    - strong [ref=e355]: Správa sociálnych sietí
+                    - generic [ref=e356]: mesačne
+                - generic [ref=e357] [cursor=pointer]:
+                  - checkbox "93—02 Tvorba obsahu mesačne" [ref=e358]
+                  - generic [ref=e359]:
+                    - generic [ref=e360]: 93—02
+                    - strong [ref=e362]: Tvorba obsahu
+                    - generic [ref=e363]: mesačne
+                - generic [ref=e364] [cursor=pointer]:
+                  - checkbox "93—03 Reels & TikTok mesačne" [ref=e365]
+                  - generic [ref=e366]:
+                    - generic [ref=e367]: 93—03
+                    - strong [ref=e369]: Reels & TikTok
+                    - generic [ref=e370]: mesačne
+                - generic [ref=e371] [cursor=pointer]:
+                  - checkbox "93—04 Web design jednorazovo" [ref=e372]
+                  - generic [ref=e373]:
+                    - generic [ref=e374]: 93—04
+                    - strong [ref=e376]: Web design
+                    - generic [ref=e377]: jednorazovo
+                - generic [ref=e378] [cursor=pointer]:
+                  - checkbox "93—05 Platená reklama mesačne" [ref=e379]
+                  - generic [ref=e380]:
+                    - generic [ref=e381]: 93—05
+                    - strong [ref=e383]: Platená reklama
+                    - generic [ref=e384]: mesačne
+                - generic [ref=e385] [cursor=pointer]:
+                  - checkbox "93—06 Stratégia a reporting mesačne" [ref=e386]
+                  - generic [ref=e387]:
+                    - generic [ref=e388]: 93—06
+                    - strong [ref=e390]: Stratégia a reporting
+                    - generic [ref=e391]: mesačne
+            - group "02 Dolaď detaily" [ref=e392]:
+              - heading "02 Dolaď detaily" [level=3] [ref=e393]:
+                - generic [ref=e394]: "02"
+                - generic [ref=e395]: Dolaď detaily
+              - generic [ref=e397]:
+                - heading "Správa sociálnych sietí" [level=4] [ref=e399]
+                - generic [ref=e400]:
+                  - generic [ref=e401]: Siete
+                  - generic [ref=e402]:
+                    - generic [ref=e403]:
+                      - checkbox "Instagram" [checked] [ref=e404]
+                      - generic [ref=e405] [cursor=pointer]: Instagram
+                    - generic [ref=e406]:
+                      - checkbox "Facebook" [ref=e407]
+                      - generic [ref=e408] [cursor=pointer]: Facebook
+                    - generic [ref=e409]:
+                      - checkbox "TikTok" [ref=e410]
+                      - generic [ref=e411] [cursor=pointer]: TikTok
+                - generic [ref=e412]:
+                  - generic [ref=e413]:
+                    - generic [ref=e414]: Postov mesačne
+                    - status "Postov mesačne 12" [ref=e415]: "12"
+                  - slider [ref=e416] [cursor=pointer]: "12"
+                - generic [ref=e417] [cursor=pointer]:
+                  - checkbox "Stories 3× týždenne" [ref=e418]
+                  - generic [ref=e420]: Stories 3× týždenne
+                - generic [ref=e421] [cursor=pointer]:
+                  - checkbox "Správa komentárov a DM" [ref=e422]
+                  - generic [ref=e424]: Správa komentárov a DM
+                - paragraph [ref=e425]: "V cene: copywriting, plán obsahu a mesačný report."
+            - group "03 Tvoj rozpočet" [ref=e426]:
+              - heading "03 Tvoj rozpočet" [level=3] [ref=e427]:
+                - generic [ref=e428]: "03"
+                - generic [ref=e429]: Tvoj rozpočet
+              - generic [ref=e430]:
+                - generic [ref=e431]:
+                  - generic [ref=e432]: Koľko chceš investovať?
+                  - status "Koľko chceš investovať? 4" [ref=e433]: 750 € / mes.
+                - slider [ref=e434] [cursor=pointer]: "4"
+              - paragraph [ref=e435]: Poskladáme to najlepšie, čo sa za tvoj rozpočet dá — bez tlaku na viac.
+            - group "04 Na ako dlho?" [ref=e436]:
+              - heading "04 Na ako dlho?" [level=3] [ref=e437]:
+                - generic [ref=e438]: "04"
+                - generic [ref=e439]: Na ako dlho?
+              - generic [ref=e440]:
+                - generic [ref=e441]:
+                  - radio "1 mesiac na skúšku" [checked] [ref=e442]
+                  - generic [ref=e443] [cursor=pointer]:
+                    - generic [ref=e444]: 1 mesiac
+                    - generic [ref=e445]: na skúšku
+                - generic [ref=e446]:
+                  - radio "3 mesiace odporúčame" [ref=e447]
+                  - generic [ref=e448] [cursor=pointer]:
+                    - generic [ref=e449]: 3 mesiace
+                    - generic [ref=e450]: odporúčame
+                - generic [ref=e451]:
+                  - radio "6 mesiacov stabilný rast" [ref=e452]
+                  - generic [ref=e453] [cursor=pointer]:
+                    - generic [ref=e454]: 6 mesiacov
+                    - generic [ref=e455]: stabilný rast
+                - generic [ref=e456]:
+                  - radio "12 mesiacov dlhodobo" [ref=e457]
+                  - generic [ref=e458] [cursor=pointer]:
+                    - generic [ref=e459]: 12 mesiacov
+                    - generic [ref=e460]: dlhodobo
+          - complementary "Tvoj výber · Liptov" [ref=e461]:
+            - generic [ref=e462]:
+              - generic [ref=e463]:
+                - generic [ref=e464]: STUDIO 93
+                - generic [ref=e465]: Tvoj výber · Liptov
+                - generic [ref=e466]:
+                  - generic [ref=e467]: 14. 11. 2026
+                  - generic [ref=e468]: "#93-1250"
+              - list [ref=e469]:
+                - listitem [ref=e470]: Mesačne · 1 mesiac
+                - listitem [ref=e471]:
+                  - generic [ref=e472]:
+                    - generic [ref=e473]: Správa sociálnych sietí
+                    - generic [ref=e474]: Instagram · 12 postov
+                  - strong [ref=e476]: ✓
+              - paragraph [ref=e478]:
+                - generic [ref=e479]: Rozpočet
+                - strong [ref=e480]: 750 € / mes.
+              - button "Chcem ponuku" [ref=e482] [cursor=pointer]:
+                - generic [aria-hidden] [ref=e484]: →
+              - paragraph [ref=e485]: Ponuku na mieru dostaneš do 24 hodín.
+    - region "Z Liptova. Od nuly." [ref=e486]:
+      - generic [ref=e487]:
+        - generic [ref=e488]:
+          - figure "FW25 — SYREN CREATIVE STUDIO" [ref=e489]:
+            - img "Čiernobiela editoriálna fotka zakladateľa STUDIO 93" [ref=e491]
+          - figure [ref=e494]:
+            - img "Čiernobiela fotka z natáčania" [ref=e495]
+        - generic [ref=e497]:
+          - generic [ref=e498]:
+            - generic [ref=e499]:
+              - generic [ref=e500]: o nás
+              - generic [ref=e501]: 93 / 05
+            - heading "Z Liptova. Od nuly." [level=2] [ref=e502]: Z Liptova.Od nuly.
+          - generic [ref=e503]:
+            - paragraph [ref=e504]: Sme mladé kreatívne štúdio z Liptova. Nie korporát, nie agentúra s tromi úrovňami schvaľovania — partia, ktorá žije obsahom a pozná každý kút regiónu.
+            - paragraph [ref=e505]:
+              - text: Zakladateľ postavil od nuly vlastnú streetwearovú značku
+              - link "Syren Creative Studio" [ref=e506] [cursor=pointer]:
+                - /url: https://www.instagram.com/syren_creativestudio/
+              - text: ". Bez investorov, bez známych — len foťák, nápady a tona hodín na Instagrame. Presne to teraz robíme pre teba: vieme, ako sa buduje značka online, lebo sme si to odmakali na vlastnej koži."
+            - list [ref=e507]:
+              - listitem [ref=e508]:
+                - strong [ref=e509]: EST. 2025
+                - generic [ref=e510]: založené
+              - listitem [ref=e511]:
+                - strong [ref=e512]: "3"
+                - generic [ref=e513]: siete
+              - listitem [ref=e514]:
+                - strong [ref=e515]: 100 %
+                - generic [ref=e516]: lokálne
+            - link "Pozri Syren →" [ref=e517] [cursor=pointer]:
+              - /url: https://www.instagram.com/syren_creativestudio/
+    - region "Čo hovoria klienti" [ref=e518]:
+      - generic [ref=e519]:
+        - generic [ref=e520]:
+          - generic [ref=e521]:
+            - generic [ref=e522]: referencie
+            - generic [ref=e523]: 93 / 06
+          - heading "Čo hovoria klienti" [level=2] [ref=e524]: Čo hovoriaklienti
+        - generic "Referencie klientov" [ref=e525]:
+          - generic [ref=e526]:
+            - figure "Majiteľka Kaviareň · Liptovský Mikuláš" [ref=e527]:
+              - text: “
+              - blockquote [ref=e528]: Za tri mesiace sme mali na Instagrame viac ľudí ako za tri roky predtým. A hlavne — reálne chodia aj do kaviarne.
+              - generic [ref=e529]:
+                - strong [ref=e530]: Majiteľka
+                - generic [ref=e531]: Kaviareň · Liptovský Mikuláš
+            - figure "Majiteľ Barbershop · Ružomberok" [ref=e532]:
+              - text: “
+              - blockquote [ref=e533]: Konečne nemusím riešiť, čo postnúť. Prídu, natočia a o týždeň je vonku reel, ktorý pozerá pol Liptova.
+              - generic [ref=e534]:
+                - strong [ref=e535]: Majiteľ
+                - generic [ref=e536]: Barbershop · Ružomberok
+            - figure "Manažérka Penzión · Liptovský Hrádok" [ref=e537]:
+              - text: “
+              - blockquote [ref=e538]: Reklamy nastavili tak, že sa nám plnia termíny aj mimo sezóny. Report každý mesiac, žiadne kecy.
+              - generic [ref=e539]:
+                - strong [ref=e540]: Manažérka
+                - generic [ref=e541]: Penzión · Liptovský Hrádok
+            - figure "Zakladateľka Butik · Liptovský Mikuláš" [ref=e542]:
+              - text: “
+              - blockquote [ref=e543]: Vyzeráme ako značka z Bratislavy, ale s dušou z Liptova. Presne to sme chceli.
+              - generic [ref=e544]:
+                - strong [ref=e545]: Zakladateľka
+                - generic [ref=e546]: Butik · Liptovský Mikuláš
+          - generic [ref=e547]:
+            - button "Predchádzajúca referencia" [ref=e548] [cursor=pointer]: ←
+            - generic [ref=e549]: 01 / 04
+            - button "Ďalšia referencia" [ref=e550] [cursor=pointer]: →
+    - region "Otázky? Odpovede." [ref=e551]:
+      - generic [ref=e552]:
+        - generic [ref=e553]:
+          - generic [ref=e554]:
+            - generic [ref=e555]: otázky
+            - generic [ref=e556]: 93 / 07
+          - heading "Otázky? Odpovede." [level=2] [ref=e557]: Otázky?Odpovede.
+        - generic [ref=e558]:
+          - group [ref=e559]:
+            - generic "Koľko stojí správa sociálnych sietí? +" [ref=e560] [cursor=pointer]
+          - group [ref=e561]:
+            - generic "Kedy uvidím výsledky? +" [ref=e562] [cursor=pointer]
+          - group [ref=e563]:
+            - generic "Musím sa viazať na dlho? +" [ref=e564] [cursor=pointer]
+          - group [ref=e565]:
+            - generic "Musím byť pri natáčaní? +" [ref=e566] [cursor=pointer]
+          - group [ref=e567]:
+            - generic "Robíte aj mimo Liptova? +" [ref=e568] [cursor=pointer]
+          - group [ref=e569]:
+            - generic "Komu patria účty a obsah? +" [ref=e570] [cursor=pointer]
+          - group [ref=e571]:
+            - generic "Čo odo mňa potrebujete na začiatok? +" [ref=e572] [cursor=pointer]
+    - region "Poďme to rozbehnúť." [ref=e573]:
+      - generic [ref=e574]:
+        - generic [ref=e575]:
+          - generic [ref=e576]:
+            - generic [ref=e577]:
+              - generic [ref=e578]: kontakt
+              - generic [ref=e579]: 93 / 08
+            - heading "Poďme to rozbehnúť." [level=2] [ref=e580]:
+              - text: Poďme to
+              - generic [ref=e581]: rozbehnúť.
+            - paragraph [ref=e582]: Napíš pár viet o svojom biznise. Ozveme sa do 24 hodín — väčšinou skôr.
+          - list [ref=e583]:
+            - listitem [ref=e584]:
+              - generic [ref=e585]: Instagram
+              - link "@studio93.liptov" [ref=e586] [cursor=pointer]:
+                - /url: https://www.instagram.com/studio93.liptov/
+            - listitem [ref=e587]:
+              - generic [ref=e588]: E-mail
+              - link "ahoj@studio93.sk" [ref=e589] [cursor=pointer]:
+                - /url: mailto:ahoj@studio93.sk
+            - listitem [ref=e590]:
+              - generic [ref=e591]: Región
+              - generic [ref=e592]: Liptov — Liptovský Mikuláš · Ružomberok · Liptovský Hrádok
+        - generic [ref=e593]:
+          - generic [ref=e594]:
+            - generic [ref=e595]:
+              - generic [ref=e596]: Meno *
+              - textbox "Meno *" [ref=e597]
+            - generic [ref=e598]:
+              - generic [ref=e599]: Firma
+              - textbox "Firma" [ref=e600]
+          - generic [ref=e601]:
+            - generic [ref=e602]:
+              - generic [ref=e603]: E-mail *
+              - textbox "E-mail *" [ref=e604]
+            - generic [ref=e605]:
+              - generic [ref=e606]: Telefón
+              - textbox "Telefón" [ref=e607]
+          - group "Ktoré siete?" [ref=e608]:
+            - generic [ref=e610]:
+              - generic [ref=e611]:
+                - checkbox "Instagram" [ref=e612]
+                - generic [ref=e613] [cursor=pointer]: Instagram
+              - generic [ref=e614]:
+                - checkbox "TikTok" [ref=e615]
+                - generic [ref=e616] [cursor=pointer]: TikTok
+              - generic [ref=e617]:
+                - checkbox "Facebook" [ref=e618]
+                - generic [ref=e619] [cursor=pointer]: Facebook
+              - generic [ref=e620]:
+                - checkbox "Neviem — poraďte" [ref=e621]
+                - generic [ref=e622] [cursor=pointer]: Neviem — poraďte
+          - generic [ref=e623]:
+            - generic [ref=e624]: Správa *
+            - textbox "Správa *" [ref=e625]
+          - textbox [aria-hidden] [ref=e626]
+          - generic [ref=e627] [cursor=pointer]:
+            - checkbox "Súhlasím so spracovaním osobných údajov za účelom odpovede na správu." [ref=e628]
+            - generic [ref=e629]: Súhlasím so spracovaním osobných údajov za účelom odpovede na správu.
+          - button "Odoslať" [ref=e630] [cursor=pointer]:
+            - generic [aria-hidden] [ref=e632]: →
+          - status [ref=e633]
+  - contentinfo [ref=e634]:
+    - generic [ref=e635]:
+      - generic [ref=e637]:
+        - generic [ref=e638]: "93"
+        - generic [ref=e639]: STUDIO
+      - generic [ref=e640]:
+        - navigation "Pätička" [ref=e641]:
+          - link "Služby" [ref=e642] [cursor=pointer]:
+            - /url: "#sluzby"
+          - link "Práce" [ref=e643] [cursor=pointer]:
+            - /url: "#prace"
+          - link "Cena" [ref=e644] [cursor=pointer]:
+            - /url: "#cena"
+          - link "Kontakt" [ref=e645] [cursor=pointer]:
+            - /url: "#kontakt"
+        - generic [ref=e646]:
+          - link "STUDIO 93 na Instagrame" [ref=e647] [cursor=pointer]:
+            - /url: https://www.instagram.com/studio93.liptov/
+            - text: studio93.liptov
+          - link "ahoj@studio93.sk" [ref=e652] [cursor=pointer]:
+            - /url: mailto:ahoj@studio93.sk
+      - generic [ref=e653]:
+        - generic [ref=e654]: © 2026 STUDIO 93
+        - generic [ref=e655]: 93 / LIPTOV — EST. 2025
+      - paragraph [ref=e656]: IKIGAI PROJECTS s. r. o. · Ulica Jozefa Adamca 9983/24, 917 01 Trnava · IČO 57431311 · Zapísaná v Obchodnom registri Okresného súdu Trnava, oddiel Sro, vložka č. 62136/T
