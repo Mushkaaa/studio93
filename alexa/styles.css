@@ -269,9 +269,9 @@ mark.brush {
 /* ---------- portfólio: 3D reel ring (pinned + rotated on scroll in main.js) ---------- */
 .reel { min-height: 100svh; display: flex; flex-direction: column; justify-content: center; overflow: hidden; padding-bottom: 40px; }
 .reel .sec-head { margin-bottom: clamp(16px, 4vh, 48px); }
-.stage { perspective: 1500px; height: clamp(300px, 46vh, 440px); display: flex; align-items: center; justify-content: center; touch-action: pan-y; cursor: grab; user-select: none; }
+.stage { perspective: 1500px; height: clamp(340px, 52vh, 480px); display: flex; align-items: center; justify-content: center; touch-action: pan-y; cursor: grab; user-select: none; }
 .stage:active { cursor: grabbing; }
-.ring { position: relative; width: 200px; height: clamp(280px, 42vh, 400px); transform-style: preserve-3d; }
+.ring { position: relative; width: 220px; height: clamp(320px, 48vh, 440px); transform-style: preserve-3d; }
 .card {
   position: absolute; inset: 0; border-radius: 22px; overflow: hidden; backface-visibility: hidden;
   display: flex; flex-direction: column; justify-content: space-between; padding: 16px;
@@ -585,7 +585,16 @@ details p a { text-underline-offset: 3px; }
   .cards { grid-template-columns: repeat(3, 1fr); gap: 28px; }
   .tag-card { padding: 28px 28px 22px; min-height: 340px; }
 
+  /* práce: bigger ring on the right, overlapping the heading */
   .reel { padding: 110px 0 48px; }
+  .reel .wrap { display: grid; grid-template-columns: repeat(12, 1fr); align-items: center; }
+  .reel .sec-head { grid-column: 1 / -1; grid-row: 1; align-self: start; margin: 0; }
+  .reel .stage { grid-column: 5 / -1; grid-row: 1; position: relative; z-index: 1; height: clamp(440px, 64vh, 600px); margin-top: 40px; }
+  .reel .ring { width: 260px; height: clamp(400px, 58vh, 520px); }
+  .card { padding: 20px; border-radius: 26px; }
+  .card__top small { font-size: .7rem; }
+  .card__bot strong { font-size: 2.6rem; }
+  .card__bot span { font-size: .9rem; }
 
   .steps { grid-template-columns: repeat(4, 1fr); gap: 28px; }
   .step { grid-template-columns: 1fr; padding-top: 30px; }
