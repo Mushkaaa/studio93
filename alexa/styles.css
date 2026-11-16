@@ -269,15 +269,15 @@ mark.brush {
 /* ---------- portfólio: 3D reel ring (pinned + rotated on scroll in main.js) ---------- */
 .reel { min-height: 100svh; display: flex; flex-direction: column; justify-content: center; overflow: hidden; padding-bottom: 40px; }
 .reel .sec-head { margin-bottom: clamp(16px, 4vh, 48px); }
-.stage { perspective: 1500px; height: clamp(300px, 46vh, 440px); display: flex; align-items: center; justify-content: center; touch-action: pan-y; cursor: grab; user-select: none; }
+.stage { perspective: 1500px; height: clamp(340px, 52vh, 480px); display: flex; align-items: center; justify-content: center; touch-action: pan-y; cursor: grab; user-select: none; }
 .stage:active { cursor: grabbing; }
-.ring { position: relative; width: 200px; height: clamp(280px, 42vh, 400px); transform-style: preserve-3d; }
+.ring { position: relative; width: 220px; height: clamp(320px, 48vh, 440px); transform-style: preserve-3d; }
 .card {
   position: absolute; inset: 0; border-radius: 22px; overflow: hidden; backface-visibility: hidden;
   display: flex; flex-direction: column; justify-content: space-between; padding: 16px;
   background: var(--char); color: #fff; border: 1px solid rgba(255, 255, 255, .08);
 }
-.card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+.card img, .card video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
 .card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(42, 33, 71, .35), transparent 30%, transparent 45%, rgba(42, 33, 71, .9)); pointer-events: none; }
 .card__top, .card__bot { position: relative; z-index: 1; }
 .card__top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
@@ -449,6 +449,19 @@ mark.brush {
 .about__facts strong { font: 400 clamp(1.5rem, 6vw, 2.4rem)/1 var(--f-display); color: var(--accent); }
 .about__facts span { font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted-l); }
 
+/* ---------- tím ---------- */
+.team { list-style: none; padding: 0; margin: 0; display: grid; gap: 40px 24px; }
+.member img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 18px; margin-bottom: 18px; }
+.member p { margin: 6px 0 0; font-size: .78rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted-l); }
+
+/* ---------- klienti (logá) ---------- */
+.clients { margin-top: 56px; padding-top: 28px; border-top: 1px solid rgba(42, 33, 71, .25); }
+.clients .label { margin: 0 0 24px; }
+.clients__list { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 18px 40px; }
+.clients__list a { text-decoration: none; }
+.clients__list a:hover { color: var(--accent); }
+.clients__list li { font: 400 clamp(1.3rem, 4.5vw, 2rem)/1 var(--f-display); text-transform: uppercase; opacity: .7; }
+
 /* ---------- referencie slider ---------- */
 .slider__track { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; position: relative; padding: 10px 2px 30px; }
 .slider__track::-webkit-scrollbar { display: none; }
@@ -551,6 +564,7 @@ details p a { text-underline-offset: 3px; }
 @media (min-width: 640px) {
   .wrap { width: min(100% - 64px, 1320px); }
   .cards { grid-template-columns: repeat(2, 1fr); }
+  .team { grid-template-columns: repeat(2, 1fr); }
   .seg { grid-template-columns: repeat(3, 1fr); }
   .seg--term { grid-template-columns: repeat(4, 1fr); }
   .calc__step { padding: 28px; }
@@ -585,7 +599,16 @@ details p a { text-underline-offset: 3px; }
   .cards { grid-template-columns: repeat(3, 1fr); gap: 28px; }
   .tag-card { padding: 28px 28px 22px; min-height: 340px; }
 
+  /* práce: bigger ring on the right, overlapping the heading */
   .reel { padding: 110px 0 48px; }
+  .reel .wrap { display: grid; grid-template-columns: repeat(12, 1fr); align-items: center; }
+  .reel .sec-head { grid-column: 1 / -1; grid-row: 1; align-self: start; margin: 0; }
+  .reel .stage { grid-column: 5 / -1; grid-row: 1; position: relative; z-index: 1; height: clamp(440px, 64vh, 600px); margin-top: 40px; }
+  .reel .ring { width: 220px; height: clamp(400px, 58vh, 520px); }
+  .card { padding: 20px; border-radius: 26px; }
+  .card__top small { font-size: .7rem; }
+  .card__bot strong { font-size: 2.6rem; }
+  .card__bot span { font-size: .9rem; }
 
   .steps { grid-template-columns: repeat(4, 1fr); gap: 28px; }
   .step { grid-template-columns: 1fr; padding-top: 30px; }
@@ -598,6 +621,7 @@ details p a { text-underline-offset: 3px; }
   .receipt { position: sticky; top: 96px; }
 
   .about__grid { grid-template-columns: 1fr 1fr; align-items: center; gap: 80px; }
+  .team { grid-template-columns: repeat(2, minmax(0, 420px)); gap: 28px; }
   .slide { flex-basis: 62%; }
   .faq { grid-template-columns: 1fr 1.6fr; gap: 64px; align-items: start; }
   .contact__grid { grid-template-columns: 1fr 1.15fr; gap: 72px; align-items: start; }
@@ -605,6 +629,7 @@ details p a { text-underline-offset: 3px; }
 }
 
 @media (min-width: 1200px) {
+  .reel .ring { width: 260px; }
   .calc { gap: 48px; }
 }
 

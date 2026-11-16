@@ -103,11 +103,24 @@ const layoutRing = () => {
   ring.R = (ringEl.offsetWidth / 2) / Math.tan(Math.PI / n) + (innerWidth < 600 ? 24 : 60);
   ringCards.forEach((c, i) => { c.style.transform = `rotateY(${i * 360 / n}deg) translateZ(${ring.R}px)`; });
 };
+// only the front-facing reel plays, and only while the ring is on screen
+const ringVideos = ringCards.map(c => $('video', c));
+let ringFront = -1, ringVisible = false;
+const syncReels = () => {
+  const n = ringCards.length;
+  const i = ringVisible && !calm ? ((Math.round(-(ring.rot + ring.drag) / (360 / n)) % n) + n) % n : -1;
+  if (i === ringFront) return;
+  ringVideos[ringFront]?.pause();
+  ringFront = i;
+  ringVideos[i]?.play().catch(() => {});
+};
 const drawRing = () => {
   ringEl.style.transform = `translateZ(${-ring.R}px) rotateX(-6deg) rotateY(${ring.rot + ring.drag}deg)`;
+  syncReels();
 };
 layoutRing();
 drawRing();
+new IntersectionObserver(([e]) => { ringVisible = e.isIntersecting; syncReels(); }, { threshold: .25 }).observe(ringEl.parentElement);
 let ringResize;
 addEventListener('resize', () => {
   clearTimeout(ringResize);
