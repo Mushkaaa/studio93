@@ -8,8 +8,9 @@
   <meta name="theme-color" content="#C9B8EE">
   <link rel="canonical" href="https://studio93liptov.sk/ochrana-osobnych-udajov.html">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="assets/fonts/fonts.css">
-  <link rel="stylesheet" href="styles.css">
+  <!-- ?v= forces browsers to fetch the new file — bump it whenever the file changes -->
+  <link rel="stylesheet" href="assets/fonts/fonts.css?v=2">
+  <link rel="stylesheet" href="styles.css?v=2">
   <style>
     .pp-nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 0; }
     .pp-nav .nav__logo { font-size: 1.9rem; }
@@ -20,7 +21,7 @@
     .pp p, .pp li { color: var(--muted-l); }
     .pp ul { padding-left: 1.2em; margin: 0 0 1em; }
     .pp li { margin-bottom: .4em; }
-    .pp a { color: var(--accent); font-weight: 600; }
+    .pp a:not(.btn) { color: var(--accent); font-weight: 600; }
     .pp strong { color: var(--ink); }
     .pp-meta { font-size: .86rem; }
     .pp-table { width: 100%; border-collapse: collapse; font-size: .86rem; margin: 0 0 1em; }
