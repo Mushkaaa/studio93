@@ -30,6 +30,112 @@ const setLang = lang => {
 langBtn.addEventListener('click', () => setLang(root.lang === 'sk' ? 'en' : 'sk'));
 try { if (localStorage.getItem('s93-lang') === 'en') setLang('en'); } catch {}
 
+/* ---------- cookies: consent + trackers ---------- */
+// paste the IDs here — each tracker stays off until its ID is filled in AND the visitor agrees
+const TRACKING = {
+  ga4: '',         // Google Analytics 4, e.g. 'G-XXXXXXXXXX'
+  metaPixel: '',   // Meta (Facebook) Pixel ID, a ~15-digit number as a string
+  tiktokPixel: '', // TikTok Pixel ID from TikTok Events Manager
+};
+const CK_KEY = 's93-consent', CK_DAYS = 365; // ask again after a year
+const ck = $('#cookies');
+const ckPrefs = $('.ck__prefs', ck);
+const ckBox = name => $(`[name="${name}"]`, ckPrefs);
+const readConsent = () => {
+  try {
+    const c = JSON.parse(localStorage.getItem(CK_KEY));
+    if (c && Date.now() - c.ts < CK_DAYS * 864e5) return c;
+  } catch {}
+  return null;
+};
+const loadScript = src => { const s = document.createElement('script'); s.async = true; s.src = src; document.head.append(s); };
+const loaded = { ga4: false, meta: false, tiktok: false };
+const startTrackers = c => {
+  if (c.analytics && TRACKING.ga4 && !loaded.ga4) {
+    loaded.ga4 = true;
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { dataLayer.push(arguments); };
+    gtag('js', new Date());
+    gtag('config', TRACKING.ga4);
+    loadScript(`https://www.googletagmanager.com/gtag/js?id=${TRACKING.ga4}`);
+  }
+  if (c.marketing && TRACKING.metaPixel && !loaded.meta) {
+    loaded.meta = true;
+    // Meta Pixel base code, unminified
+    const f = window.fbq = function () { f.callMethod ? f.callMethod.apply(f, arguments) : f.queue.push(arguments); };
+    window._fbq = f; f.push = f; f.loaded = true; f.version = '2.0'; f.queue = [];
+    fbq('init', TRACKING.metaPixel);
+    fbq('track', 'PageView');
+    loadScript('https://connect.facebook.net/en_US/fbevents.js');
+  }
+  if (c.marketing && TRACKING.tiktokPixel && !loaded.tiktok) {
+    loaded.tiktok = true;
+    // TikTok Pixel base code, unminified
+    window.TiktokAnalyticsObject = 'ttq';
+    const ttq = window.ttq = window.ttq || [];
+    ttq.methods = ['page', 'track', 'identify', 'instances', 'debug', 'on', 'off', 'once', 'ready', 'alias', 'group', 'enableCookie', 'disableCookie', 'holdConsent', 'revokeConsent', 'grantConsent'];
+    ttq.setAndDefer = (o, m) => { o[m] = (...a) => { o.push([m, ...a]); }; };
+    ttq.methods.forEach(m => ttq.setAndDefer(ttq, m));
+    ttq.instance = id => { const e = ttq._i[id] || []; ttq.methods.forEach(m => ttq.setAndDefer(e, m)); return e; };
+    ttq.load = (id, opts) => {
+      const src = 'https://analytics.tiktok.com/i18n/pixel/events.js';
+      ttq._i = ttq._i || {}; ttq._i[id] = []; ttq._i[id]._u = src;
+      ttq._t = ttq._t || {}; ttq._t[id] = +new Date();
+      ttq._o = ttq._o || {}; ttq._o[id] = opts || {};
+      loadScript(`${src}?sdkid=${id}&lib=ttq`);
+    };
+    ttq.load(TRACKING.tiktokPixel);
+    ttq.page();
+  }
+};
+// trackers set their cookies on the main domain (.studio93liptov.sk) — remove them on every level
+const clearTrackerCookies = () => {
+  const host = location.hostname, main = host.split('.').slice(-2).join('.');
+  document.cookie.split(';').map(s => s.split('=')[0].trim())
+    .filter(n => /^(_ga|_gid|_gat|_fbp|_fbc|_ttp|_tt_)/.test(n))
+    .forEach(n => ['', `; domain=${host}`, `; domain=.${main}`].forEach(d => {
+      document.cookie = `${n}=; Max-Age=0; path=/${d}`;
+    }));
+};
+const showPrefs = on => {
+  ckPrefs.hidden = !on;
+  $('[data-ck="settings"]', ck).hidden = on;
+  $('[data-ck="save"]', ck).hidden = !on;
+};
+const openCk = prefs => {
+  const c = readConsent() || {};
+  ckBox('analytics').checked = !!c.analytics;
+  ckBox('marketing').checked = !!c.marketing;
+  showPrefs(prefs);
+  ck.hidden = false;
+};
+const closeCk = () => {
+  ck.hidden = true;
+  if (location.hash === '#cookies') history.replaceState(null, '', location.pathname + location.search);
+};
+const saveConsent = ({ analytics = false, marketing = false }) => {
+  const prev = readConsent() || {};
+  try { localStorage.setItem(CK_KEY, JSON.stringify({ analytics, marketing, ts: Date.now() })); } catch {}
+  closeCk();
+  if ((prev.analytics && !analytics) || (prev.marketing && !marketing)) clearTrackerCookies();
+  // a running tracker can't be unloaded — reload so it's gone
+  if ((loaded.ga4 && !analytics) || ((loaded.meta || loaded.tiktok) && !marketing)) return location.reload();
+  startTrackers({ analytics, marketing });
+};
+ck.addEventListener('click', e => {
+  const a = e.target.closest('[data-ck]')?.dataset.ck;
+  if (a === 'all') saveConsent({ analytics: true, marketing: true });
+  if (a === 'reject') saveConsent({});
+  if (a === 'settings') showPrefs(true);
+  if (a === 'save') saveConsent({ analytics: ckBox('analytics').checked, marketing: ckBox('marketing').checked });
+});
+$$('[data-ck-open]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); openCk(true); }));
+addEventListener('hashchange', () => { if (location.hash === '#cookies') openCk(true); });
+const consent = readConsent();
+if (consent) startTrackers(consent);
+if (location.hash === '#cookies') openCk(true);
+else if (!consent) openCk(false);
+
 /* ---------- reveal on scroll ---------- */
 const io = new IntersectionObserver(entries => entries.forEach(e => {
   if (!e.isIntersecting) return;

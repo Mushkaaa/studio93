@@ -39,9 +39,7 @@
   }
   </script>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=Rubik+Spray+Paint&family=Sniglet:wght@800&display=swap">
+  <link rel="stylesheet" href="assets/fonts/fonts.css">
   <link rel="stylesheet" href="styles.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
@@ -591,7 +589,7 @@
           <ul class="contact__info reveal">
             <li><span class="label">Instagram</span><a href="https://www.instagram.com/studio93.liptov/" target="_blank" rel="noopener">@studio93.liptov</a></li>
             <li><span class="label">E-mail</span><a href="mailto:manager@studio93liptov.sk">manager@studio93liptov.sk</a></li>
-            <li><span class="label" data-en="Region">Región</span><span data-en="📍 Liptov, all of Slovakia">📍 Liptov, celé Slovensko</span></li>
+            <li><span class="label" data-en="Region">Región</span><span data-en="Liptov, all of Slovakia">Liptov, celé Slovensko</span></li>
           </ul>
         </div>
 
@@ -616,7 +614,7 @@
           </fieldset>
           <label class="field"><span data-en="Message *">Správa *</span><textarea name="sprava" rows="4" required></textarea></label>
           <input type="text" name="_honey" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true">
-          <label class="consent"><input type="checkbox" name="suhlas" required><span data-en="I agree to the processing of my personal data in order to reply to this message.">Súhlasím so spracovaním osobných údajov za účelom odpovede na správu.</span></label>
+          <label class="consent"><input type="checkbox" name="suhlas" required><span data-en="I agree to the processing of my personal data in order to reply to this message (<a href='ochrana-osobnych-udajov.html' target='_blank'>privacy policy</a>).">Súhlasím so spracovaním osobných údajov za účelom odpovede na správu (<a href="ochrana-osobnych-udajov.html" target="_blank">ochrana osobných údajov</a>).</span></label>
           <button class="btn magnetic" type="submit"><span data-en="Send">Odoslať</span> <i aria-hidden="true">→</i></button>
           <p class="form__status" role="status" aria-live="polite"></p>
         </form>
@@ -645,11 +643,30 @@
       </div>
       <div class="footer__row footer__legal">
         <span>© <span id="year">2025</span> STUDIO 93</span>
+        <a href="ochrana-osobnych-udajov.html" data-en="Privacy policy">Ochrana osobných údajov</a>
+        <a href="#cookies" data-ck-open data-en="Cookie settings">Nastavenia cookies</a>
         <span>93 / LIPTOV — EST. 2025</span>
       </div>
       <!-- PLACEHOLDER: DIČ / IČ DPH doplň, keď ich budeš mať -->
       <p class="footer__company">IKIGAI PROJECTS s. r. o. · Ulica Jozefa Adamca 9983/24, 917 01 Trnava · <span data-en="Company ID">IČO</span> 57431311 · <span data-en="Registered in the Commercial Register of the District Court Trnava, section Sro, file no. 62136/T">Zapísaná v Obchodnom registri Okresného súdu Trnava, oddiel Sro, vložka č. 62136/T</span></p>
     </div>
   </footer>
+
+  <!-- ============ COOKIES (consent) ============ -->
+  <div class="ck light" id="cookies" role="dialog" aria-labelledby="ck-title" aria-describedby="ck-text" hidden>
+    <p class="ck__title" id="ck-title" data-en="Cookies? Only with your OK.">Cookies? Len s tvojím OK.</p>
+    <p class="ck__text" id="ck-text" data-en="We only store what the site needs to work (your language and this choice). Analytics and marketing cookies (Google Analytics, Meta Pixel, TikTok Pixel) are switched on only if you agree. <a href='ochrana-osobnych-udajov.html#cookies'>More info</a>">Ukladáme len to, čo web potrebuje na fungovanie (jazyk a túto voľbu). Analytické a marketingové cookies (Google Analytics, Meta Pixel, TikTok Pixel) zapneme, iba ak súhlasíš. <a href="ochrana-osobnych-udajov.html#cookies">Viac info</a></p>
+    <div class="ck__prefs" hidden>
+      <label class="toggle"><input type="checkbox" checked disabled><i class="sw"></i><span data-en="Necessary — always on">Nevyhnutné — vždy zapnuté</span></label>
+      <label class="toggle"><input type="checkbox" name="analytics"><i class="sw"></i><span data-en="Analytics — Google Analytics">Analytické — Google Analytics</span></label>
+      <label class="toggle"><input type="checkbox" name="marketing"><i class="sw"></i><span data-en="Marketing — Meta Pixel, TikTok Pixel">Marketingové — Meta Pixel, TikTok Pixel</span></label>
+    </div>
+    <div class="ck__btns">
+      <button class="btn btn--sm btn--ghost" type="button" data-ck="settings" data-en="Settings">Nastavenia</button>
+      <button class="btn btn--sm btn--ghost" type="button" data-ck="save" data-en="Save choice" hidden>Uložiť výber</button>
+      <button class="btn btn--sm" type="button" data-ck="reject" data-en="Reject">Odmietnuť</button>
+      <button class="btn btn--sm" type="button" data-ck="all" data-en="Accept all">Prijať všetko</button>
+    </div>
+  </div>
 </body>
 </html>
