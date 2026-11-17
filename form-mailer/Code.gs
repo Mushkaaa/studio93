@@ -4,7 +4,7 @@
 // the form's action in alexa/index.html. After editing this file, redeploy
 // (Deploy → Manage deployments → edit → New version) so the URL keeps working.
 
-const TO = 'martinpospisil2000@gmail.com';
+const TO = 'manager.studio93@gmail.com';
 const MAX_PER_HOUR = 30; // crude flood guard across all visitors
 const FIELDS = { meno: 'Meno', firma: 'Firma', email: 'E-mail', telefon: 'Telefón', siete: 'Siete', sprava: 'Správa' };
 

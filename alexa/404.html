@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>404 — Stránka sa nenašla | STUDIO 93</title>
+  <meta name="description" content="Táto stránka neexistuje. Pokračuj na úvod STUDIO 93 — social media agentúra z Liptova.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#C9B8EE">
+  <!-- absolute paths: this page is served for any missing URL, at any depth -->
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=Rubik+Spray+Paint&family=Sniglet:wght@800&display=swap">
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    .nf { min-height: 100vh; min-height: 100svh; display: grid; place-items: center; text-align: center; padding: 96px 0; }
+    .nf .lang { position: absolute; top: 16px; right: 16px; }
+    .nf__logo { font-size: 2.6rem; margin-bottom: 32px; }
+    .nf__title { font-size: clamp(3.4rem, 15vw, 9rem); line-height: .95; margin: 16px 0 24px; }
+    .nf .lead { max-width: 34ch; margin: 0 auto 32px; }
+  </style>
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <main class="nf light lav">
+    <button class="lang" type="button" aria-label="Switch to English">EN</button>
+    <div class="wrap">
+      <a class="nf__logo logo-tile" href="/" aria-label="STUDIO 93 — domov"><span class="logo93"><b>93</b></span></a>
+      <p><span class="label">ERROR 404</span></p>
+      <h1 class="nf__title" data-en="Frame<br><span class='spray'>not found.</span>">Záber<br><span class="spray">nenájdený.</span></h1>
+      <p class="lead" data-en="This page doesn't exist or has moved. Head back to the start — the feed is waiting.">Táto stránka neexistuje alebo sa presunula. Vráť sa na úvod — feed čaká.</p>
+      <a class="btn" href="/"><span data-en="Back to home">Späť na úvod</span> <i aria-hidden="true">→</i></a>
+    </div>
+  </main>
+  <script>
+    (() => {
+      const root = document.documentElement, btn = document.querySelector('.lang');
+      const items = [...document.querySelectorAll('[data-en]')].map(el => ({ el, sk: el.innerHTML, en: el.dataset.en }));
+      const titles = { sk: document.title, en: '404 — Page not found | STUDIO 93' };
+      const setLang = lang => {
+        root.lang = lang;
+        items.forEach(o => { o.el.innerHTML = o[lang]; });
+        document.title = titles[lang];
+        btn.textContent = lang === 'sk' ? 'EN' : 'SK';
+        btn.setAttribute('aria-label', lang === 'sk' ? 'Switch to English' : 'Prepnúť do slovenčiny');
+        try { localStorage.setItem('s93-lang', lang); } catch {}
+      };
+      btn.addEventListener('click', () => setLang(root.lang === 'sk' ? 'en' : 'sk'));
+      try { if (localStorage.getItem('s93-lang') === 'en') setLang('en'); } catch {}
+    })();
+  </script>
+</body>
+</html>
