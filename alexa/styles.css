@@ -276,6 +276,8 @@ mark.brush {
 .reel .sec-head { margin-bottom: clamp(16px, 4vh, 48px); }
 .stage { perspective: 1500px; height: clamp(340px, 52vh, 480px); display: flex; align-items: center; justify-content: center; touch-action: pan-y; cursor: grab; user-select: none; }
 .stage:active { cursor: grabbing; }
+.reel__nav { position: relative; z-index: 2; display: flex; align-items: center; justify-content: center; gap: 18px; margin-top: 12px; }
+.reel__count { font: 400 1.4rem/1 var(--f-display); letter-spacing: .06em; min-width: 5ch; text-align: center; }
 .ring { position: relative; width: 220px; height: clamp(320px, 48vh, 440px); transform-style: preserve-3d; }
 .card {
   position: absolute; inset: 0; border-radius: 22px; overflow: hidden; backface-visibility: hidden;
@@ -642,7 +644,13 @@ details p a { text-underline-offset: 3px; }
   .reel { padding: 110px 0 48px; }
   .reel .wrap { display: grid; grid-template-columns: repeat(12, 1fr); align-items: center; }
   .reel .sec-head { grid-column: 1 / -1; grid-row: 1; align-self: start; margin: 0; }
-  .reel .stage { grid-column: 5 / -1; grid-row: 1; position: relative; z-index: 1; height: clamp(440px, 64vh, 600px); margin-top: 40px; }
+  .reel .stage {
+    grid-column: 5 / -1; grid-row: 1; position: relative; z-index: 1; height: clamp(440px, 64vh, 600px); margin-top: 40px;
+    /* cards fade out before they reach the heading; main.js measures --fade-from / --fade-to */
+    -webkit-mask-image: linear-gradient(to right, transparent var(--fade-from, 0px), #000 var(--fade-to, 0px));
+    mask-image: linear-gradient(to right, transparent var(--fade-from, 0px), #000 var(--fade-to, 0px));
+  }
+  .reel .reel__nav { grid-column: 5 / -1; grid-row: 2; }
   .reel .ring { width: 220px; height: clamp(400px, 58vh, 520px); }
   .card { padding: 20px; border-radius: 26px; }
   .card__top small { font-size: .7rem; }

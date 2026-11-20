@@ -322,59 +322,117 @@ if (!calm && 'DeviceOrientationEvent' in window) {
 }
 
 /* ---------- práce: 3D reel ring ---------- */
+// the page scrolls past freely; the ring only turns a little while you scroll by.
+// browse the reels: drag / swipe the ring, the ← → buttons, or a sideways trackpad swipe. It snaps to the nearest reel.
 const ringEl = $('#ring');
+const stageEl = $('.stage');
 const ringCards = [...ringEl.children];
-const ring = { rot: 0, drag: 0, R: 0 };
+const RING_N = ringCards.length, RING_STEP = 360 / RING_N;
+// rot = the reel you picked, scroll = turn from scrolling past, drag = live drag / trackpad swipe
+const ring = { rot: 0, scroll: 0, drag: 0, R: 0 };
+const ringCount = $('.reel__count');
+const ringAngle = () => ring.rot + ring.scroll + ring.drag;
+const frontIndex = () => ((Math.round(-ringAngle() / RING_STEP) % RING_N) + RING_N) % RING_N;
 const layoutRing = () => {
-  const n = ringCards.length;
-  ring.R = (ringEl.offsetWidth / 2) / Math.tan(Math.PI / n) + (innerWidth < 600 ? 24 : 60);
-  ringCards.forEach((c, i) => { c.style.transform = `rotateY(${i * 360 / n}deg) translateZ(${ring.R}px)`; });
+  ring.R = (ringEl.offsetWidth / 2) / Math.tan(Math.PI / RING_N) + (innerWidth < 600 ? 24 : 60);
+  ringCards.forEach((c, i) => { c.style.transform = `rotateY(${i * RING_STEP}deg) translateZ(${ring.R}px)`; });
+};
+// desktop: cards fade out before they reach the heading (the mask is in CSS, its position is measured here)
+const fitFade = () => {
+  const r = document.createRange();
+  r.selectNodeContents($('#prace-title'));
+  const textRight = Math.max(...[...r.getClientRects()].map(b => b.right));
+  const st = stageEl.getBoundingClientRect();
+  // the front card always stays fully visible: the fade ends just before its left edge
+  const frontLeft = st.width / 2 - ringEl.offsetWidth / 2 - 6;
+  const from = Math.max(0, textRight - st.left + 8);
+  const to = Math.max(from + 12, Math.min(from + 120, frontLeft));
+  stageEl.style.setProperty('--fade-from', `${from}px`);
+  stageEl.style.setProperty('--fade-to', `${to}px`);
 };
 // only the front-facing reel plays, and only while the ring is on screen
 const ringVideos = ringCards.map(c => $('video', c));
-let ringFront = -1, ringVisible = false;
+let ringFront = -1, ringVisible = false, ringShown = -1;
 const syncReels = () => {
-  const n = ringCards.length;
-  const i = ringVisible && !calm ? ((Math.round(-(ring.rot + ring.drag) / (360 / n)) % n) + n) % n : -1;
+  const f = frontIndex();
+  if (f !== ringShown && ringCount) {
+    ringShown = f;
+    ringCount.textContent = `${String(f + 1).padStart(2, '0')} / ${String(RING_N).padStart(2, '0')}`;
+  }
+  const i = ringVisible && !calm ? f : -1;
   if (i === ringFront) return;
   ringVideos[ringFront]?.pause();
   ringFront = i;
   ringVideos[i]?.play().catch(() => {});
 };
 const drawRing = () => {
-  ringEl.style.transform = `translateZ(${-ring.R}px) rotateX(-6deg) rotateY(${ring.rot + ring.drag}deg)`;
+  ringEl.style.transform = `translateZ(${-ring.R}px) rotateX(-6deg) rotateY(${ringAngle()}deg)`;
   syncReels();
 };
 layoutRing();
+fitFade();
 drawRing();
-new IntersectionObserver(([e]) => { ringVisible = e.isIntersecting; syncReels(); }, { threshold: .25 }).observe(ringEl.parentElement);
+document.fonts?.ready.then(fitFade); // the heading's width is final only once its font has loaded
+langBtn.addEventListener('click', fitFade); // SK and EN headings have different widths
+new IntersectionObserver(([e]) => { ringVisible = e.isIntersecting; syncReels(); }, { threshold: .25 }).observe(stageEl);
 let ringResize;
 addEventListener('resize', () => {
   clearTimeout(ringResize);
-  ringResize = setTimeout(() => { layoutRing(); drawRing(); }, 150);
+  ringResize = setTimeout(() => { layoutRing(); fitFade(); drawRing(); }, 150);
 });
 
+// smooth turn to a reel (ease-out); a drag in progress melts into it
+let ringTween = 0;
+const turnRing = (to, ms = 700) => {
+  cancelAnimationFrame(ringTween);
+  if (calm) { ring.rot = to; ring.drag = 0; drawRing(); return; }
+  const from = ring.rot, fromDrag = ring.drag, t0 = performance.now();
+  const step = now => {
+    const p = Math.min((now - t0) / ms, 1), e = 1 - Math.pow(1 - p, 3);
+    ring.rot = from + (to - from) * e;
+    ring.drag = fromDrag * (1 - e);
+    drawRing();
+    if (p < 1) ringTween = requestAnimationFrame(step);
+  };
+  ringTween = requestAnimationFrame(step);
+};
+// rot that puts the nearest reel (optionally one further) exactly in front, keeping the scroll turn
+const snapTarget = (extra = 0) => Math.round((ringAngle() + extra) / RING_STEP) * RING_STEP - ring.scroll;
+
+// ← → buttons
+$$('[data-ring]').forEach(b => b.addEventListener('click', () => turnRing(snapTarget(-Number(b.dataset.ring) * RING_STEP))));
+
+// drag with mouse, swipe with finger (vertical swipes still scroll the page: touch-action pan-y)
+let dragging = false, lastX = 0;
+stageEl.addEventListener('pointerdown', e => { dragging = true; lastX = e.clientX; cancelAnimationFrame(ringTween); });
+addEventListener('pointermove', e => {
+  if (!dragging) return;
+  ring.drag += (e.clientX - lastX) * .25;
+  lastX = e.clientX;
+  drawRing();
+});
+const release = () => { if (!dragging) return; dragging = false; turnRing(snapTarget()); };
+addEventListener('pointerup', release);
+addEventListener('pointercancel', release);
+
+// sideways trackpad swipe / shift+wheel turns the ring; normal up/down scrolling passes through to the page
+let wheelEnd;
+stageEl.addEventListener('wheel', e => {
+  if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
+  e.preventDefault();
+  cancelAnimationFrame(ringTween);
+  ring.drag -= e.deltaX * .15;
+  drawRing();
+  clearTimeout(wheelEnd);
+  wheelEnd = setTimeout(() => turnRing(snapTarget(), 500), 120);
+}, { passive: false });
+
+// scrolling past turns the ring by two reels (no page lock); halfway through the section a reel faces front
 if (window.gsap && window.ScrollTrigger && !calm) {
   gsap.registerPlugin(ScrollTrigger);
-  // 'bottom bottom' = 'top top' when the section fits the screen; on short screens it pins once the ring is fully in view
   gsap.to(ring, {
-    rot: -360, ease: 'none', onUpdate: drawRing,
-    scrollTrigger: { trigger: '.reel', start: 'bottom bottom', end: '+=180%', pin: true, scrub: 1 },
-  });
-  let dragging = false, lastX = 0;
-  const release = () => {
-    if (!dragging) return;
-    dragging = false;
-    gsap.to(ring, { drag: 0, duration: 1.2, ease: 'elastic.out(1,0.5)', onUpdate: drawRing });
-  };
-  $('.stage').addEventListener('pointerdown', e => { dragging = true; lastX = e.clientX; gsap.killTweensOf(ring, 'drag'); });
-  addEventListener('pointerup', release);
-  addEventListener('pointercancel', release);
-  addEventListener('pointermove', e => {
-    if (!dragging) return;
-    ring.drag += (e.clientX - lastX) * .25;
-    lastX = e.clientX;
-    drawRing();
+    scroll: -RING_STEP * 2, ease: 'none', onUpdate: drawRing,
+    scrollTrigger: { trigger: '.reel', start: 'top bottom', end: 'bottom top', scrub: 1 },
   });
 }
 

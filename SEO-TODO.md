@@ -36,9 +36,8 @@ Fill in the blanks, tick what's done, and send this file back to Claude.
     1. `__________`
     2. `__________`
 
-- [ ] **Team**: photos and roles are placeholders
-  - Portrait photos for Alexa Vachálková and Martin Pospíšil: **in color**, portrait orientation (4:5, at least 600 × 750 px). The site shows them black and white and turns them to color on hover
-  - Roles: Alexa `__________`, Martin `__________`
+- [x] **Team**: real photos and roles added (2026-11-20)
+  - Roles: Alexa `Sociálne siete, obsah a všetko ostatné`, Martin `Web a softvér`
 
 - [ ] **Unnamed reels**: 3 portfolio reels are labelled just "Reel"
   - Client names for `reel-1`, `dielna`, `trend`: `__________`
