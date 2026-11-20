@@ -24,7 +24,7 @@ const setLang = lang => {
   root.lang = lang;
   i18n.forEach(o => { o.el.innerHTML = o[lang]; });
   langBtn.textContent = lang === 'sk' ? 'EN' : 'SK';
-  langBtn.setAttribute('aria-label', lang === 'sk' ? 'Switch to English' : 'Prepnúť do slovenčiny');
+  langBtn.setAttribute('aria-label', lang === 'sk' ? 'EN — Switch to English' : 'SK — Prepnúť do slovenčiny');
   try { localStorage.setItem('s93-lang', lang); } catch {}
 };
 langBtn.addEventListener('click', () => setLang(root.lang === 'sk' ? 'en' : 'sk'));
@@ -193,10 +193,131 @@ if (fine) {
     $$('.magnetic').forEach(el => {
       el.addEventListener('pointermove', e => {
         const r = el.getBoundingClientRect();
-        el.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * .25}px, ${(e.clientY - r.top - r.height / 2) * .35}px)`;
+        // how far the button follows the mouse (share of the distance from its center); bigger = moves more
+        el.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * .08}px, ${(e.clientY - r.top - r.height / 2) * .12}px)`;
       });
       el.addEventListener('pointerleave', () => { el.style.transform = ''; });
     });
+  }
+}
+
+/* ---------- tím ---------- */
+// side by side (>= 900px): hover a person -> photo in color, card tilts under the mouse, logo turns to face them
+// stacked (phones/tablets): the card nearest the middle of the screen lights up (color + glow)
+//   and tilts as you tilt the phone (gyroscope). iPhone asks permission on the first tap of that card.
+const team = $('.team');
+const teamLogo = $('.team__logo .logo-tile');
+const members = $$('.member', team);
+const cardOf = m => $('.member__card', m);
+const stacked = matchMedia('(max-width: 899.98px)');
+const clampNum = (v, a, b) => Math.min(Math.max(v, a), b);
+const setTilt = (card, rx, ry, gx = 50, gy = 30) => {
+  card.style.setProperty('--rx', `${rx}deg`);
+  card.style.setProperty('--ry', `${ry}deg`);
+  card.style.setProperty('--gx', `${gx}%`);
+  card.style.setProperty('--gy', `${gy}%`);
+};
+const lean = (x, y, t) => {
+  if (!teamLogo) return;
+  teamLogo.style.setProperty('--lx', `${x}deg`);
+  teamLogo.style.setProperty('--ly', `${y}deg`);
+  teamLogo.style.setProperty('--lt', `${t}px`);
+};
+// light up one person (or nobody), switch the others back to black & white
+const activate = m => members.forEach(x => {
+  if (x !== m && x.classList.contains('is-active')) setTilt(cardOf(x), 0, 0);
+  x.classList.toggle('is-active', x === m);
+});
+
+/* side by side: mouse hover */
+members.forEach(m => {
+  const card = cardOf(m);
+  const side = m.dataset.side === 'left' ? -1 : 1;
+  m.addEventListener('pointerenter', () => {
+    if (stacked.matches) return;
+    activate(m);
+    lean(4, side * 38, side * 18);
+  });
+  m.addEventListener('pointerleave', () => {
+    if (stacked.matches) return;
+    activate(null);
+    lean(0, 0, 0);
+  });
+  if (fine && !calm) m.addEventListener('pointermove', e => {
+    if (stacked.matches) return;
+    const r = card.getBoundingClientRect();
+    const px = clampNum((e.clientX - r.left) / r.width, 0, 1);
+    const py = clampNum((e.clientY - r.top) / r.height, 0, 1);
+    setTilt(card, (.5 - py) * 16, (px - .5) * 16, px * 100, py * 100);
+  });
+});
+// between the photos the logo follows the mouse
+if (fine && !calm && teamLogo) team.addEventListener('pointermove', e => {
+  if (stacked.matches || members.some(m => m.classList.contains('is-active'))) return;
+  const r = teamLogo.getBoundingClientRect();
+  const dx = (e.clientX - (r.left + r.width / 2)) / (team.offsetWidth / 2);
+  const dy = (e.clientY - (r.top + r.height / 2)) / (team.offsetHeight / 2);
+  lean(clampNum(-dy, -1, 1) * 18, clampNum(dx, -1, 1) * 30, 0);
+});
+if (team) team.addEventListener('pointerleave', () => { if (!stacked.matches) lean(0, 0, 0); });
+
+/* stacked: scroll highlight */
+let lit = null;
+const pickLit = () => {
+  if (!stacked.matches) return;
+  const vh = innerHeight;
+  const tr = team.getBoundingClientRect();
+  let best = null;
+  // only while the team section covers the middle part of the screen
+  if (tr.bottom > vh * .2 && tr.top < vh * .8) {
+    let bestDist = Infinity;
+    members.forEach(m => {
+      const r = cardOf(m).getBoundingClientRect();
+      const dist = Math.abs(r.top + r.height / 2 - vh / 2);
+      if (dist < bestDist) { bestDist = dist; best = m; }
+    });
+  }
+  if (best !== lit) { lit = best; activate(best); }
+};
+let pickQueued = false;
+addEventListener('scroll', () => {
+  if (pickQueued) return;
+  pickQueued = true;
+  requestAnimationFrame(() => { pickQueued = false; pickLit(); });
+}, { passive: true });
+stacked.addEventListener('change', () => { lit = null; activate(null); lean(0, 0, 0); pickLit(); });
+pickLit();
+
+/* stacked: the lit card follows the phone's tilt */
+const gyro = { base: null, tx: 0, ty: 0, x: 0, y: 0, running: false, asked: false };
+const GYRO_RANGE = 20; // degrees of phone tilt for the full card tilt
+const GYRO_TILT = 12;  // max card tilt in degrees
+const gyroLoop = () => {
+  gyro.x += (gyro.tx - gyro.x) * .15; // smoothing
+  gyro.y += (gyro.ty - gyro.y) * .15;
+  if (lit && stacked.matches) setTilt(cardOf(lit), -gyro.x * GYRO_TILT, gyro.y * GYRO_TILT, 50 + gyro.y * 40, 40 - gyro.x * 40);
+  requestAnimationFrame(gyroLoop);
+};
+const onOrient = e => {
+  if (e.beta == null || e.gamma == null) return;
+  // "straight" = however you were holding the phone; it slowly re-centers if you keep it tilted
+  if (!gyro.base) gyro.base = { b: e.beta, g: e.gamma };
+  gyro.base.b += (e.beta - gyro.base.b) * .005;
+  gyro.base.g += (e.gamma - gyro.base.g) * .005;
+  gyro.tx = clampNum((e.beta - gyro.base.b) / GYRO_RANGE, -1, 1);
+  gyro.ty = clampNum((e.gamma - gyro.base.g) / GYRO_RANGE, -1, 1);
+  if (!gyro.running) { gyro.running = true; requestAnimationFrame(gyroLoop); }
+};
+if (!calm && 'DeviceOrientationEvent' in window) {
+  // Android: data arrives right away. iPhone: nothing arrives until the visitor allows it
+  addEventListener('deviceorientation', onOrient);
+  // so if no data came yet, the first tap on the lit card asks (iPhone pop-up; no visible hint, by choice)
+  if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+    members.forEach(m => m.addEventListener('click', () => {
+      if (!stacked.matches || m !== lit || gyro.asked || gyro.running) return;
+      gyro.asked = true;
+      DeviceOrientationEvent.requestPermission().catch(() => {});
+    }));
   }
 }
 

@@ -9,20 +9,22 @@
   <meta name="theme-color" content="#C9B8EE">
   <!-- absolute paths: this page is served for any missing URL, at any depth -->
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/favicon-48.png" type="image/png" sizes="48x48">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="stylesheet" href="/assets/fonts/fonts.css?v=2">
-  <link rel="stylesheet" href="/styles.css?v=2">
+  <link rel="stylesheet" href="/styles.css?v=7">
   <style>
     .nf { min-height: 100vh; min-height: 100svh; display: grid; place-items: center; text-align: center; padding: 96px 0; }
     .nf .lang { position: absolute; top: 16px; right: 16px; }
     .nf__logo { font-size: 2.6rem; margin-bottom: 32px; }
-    .nf__title { font-size: clamp(3.4rem, 15vw, 9rem); line-height: .95; margin: 16px 0 24px; }
+    .nf__title { font-size: clamp(2.6rem, 14vw, 9rem); line-height: .95; margin: 16px 0 24px; }
     .nf .lead { max-width: 34ch; margin: 0 auto 32px; }
   </style>
 </head>
 <body>
   <div class="grain" aria-hidden="true"></div>
   <main class="nf light lav">
-    <button class="lang" type="button" aria-label="Switch to English">EN</button>
+    <button class="lang" type="button" aria-label="EN — Switch to English">EN</button>
     <div class="wrap">
       <a class="nf__logo logo-tile" href="/" aria-label="STUDIO 93 — domov"><span class="logo93"><b>93</b></span></a>
       <p><span class="label">ERROR 404</span></p>
@@ -41,7 +43,7 @@
         items.forEach(o => { o.el.innerHTML = o[lang]; });
         document.title = titles[lang];
         btn.textContent = lang === 'sk' ? 'EN' : 'SK';
-        btn.setAttribute('aria-label', lang === 'sk' ? 'Switch to English' : 'Prepnúť do slovenčiny');
+        btn.setAttribute('aria-label', lang === 'sk' ? 'EN — Switch to English' : 'SK — Prepnúť do slovenčiny');
         try { localStorage.setItem('s93-lang', lang); } catch {}
       };
       btn.addEventListener('click', () => setLang(root.lang === 'sk' ? 'en' : 'sk'));

@@ -24,7 +24,7 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; scroll-padding-top: 72px; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; scroll-padding-top: 72px; overflow-x: clip; } /* clip on html too, or phones widen the page to fit the tilted marquees */
 body {
   margin: 0;
   background: var(--off);
@@ -221,6 +221,8 @@ mark.brush {
 .hero__labels { display: flex; flex-wrap: wrap; gap: 8px; }
 .hero__title { font-size: clamp(3.9rem, 17.5vw, 13.5rem); line-height: .95; }
 .hero__title .spray { font-size: .92em; }
+/* small keyword line inside the h1 (for Google), styled like a label */
+.hero__kicker { display: block; margin-bottom: 14px; font: 700 .78rem/1.3 var(--f-body); letter-spacing: .16em; color: var(--ink); }
 .hero__sub { max-width: 34rem; color: var(--ink); font-size: 1.05rem; margin: 0; }
 .hero__ctas { display: flex; flex-wrap: wrap; gap: 12px; }
 .hero__meta { display: flex; justify-content: space-between; margin-top: 40px; font: 600 .62rem/1 var(--f-body); letter-spacing: .2em; color: var(--muted-l); }
@@ -245,6 +247,9 @@ mark.brush {
 
 /* ---------- služby: tag cards ---------- */
 .cards { display: grid; gap: 20px; }
+.svc-for { max-width: 46rem; margin-top: 56px; }
+.svc-for h3 { font-size: clamp(1.9rem, 6vw, 2.4rem); margin-bottom: 12px; }
+.svc-for p { margin: 0; font-size: 1.05rem; }
 .tag-card {
   position: relative; display: flex; flex-direction: column; gap: 14px;
   padding: 22px 22px 18px; border-radius: 14px; background: var(--paper); color: var(--ink);
@@ -313,7 +318,7 @@ mark.brush {
 .calc label { position: relative; }
 .svc input, .chip input, .seg input, .toggle input { position: absolute; opacity: 0; width: 1px; height: 1px; }
 
-.svc { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.svc { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
 .svc label { display: block; cursor: pointer; }
 .svc__card {
   display: flex; flex-direction: column; gap: 6px; height: 100%; min-height: 118px; padding: 14px; border-radius: 12px;
@@ -323,7 +328,9 @@ mark.brush {
 .svc__top { display: flex; align-items: center; gap: 8px; font: 600 .6rem/1 var(--f-body); letter-spacing: .16em; color: var(--muted-l); }
 .svc__check { display: grid; place-items: center; width: 22px; height: 22px; margin-left: auto; border-radius: 50%; border: 1.5px solid rgba(42, 33, 71, .35); transition: background .2s, border-color .2s; }
 .svc__check::after { content: ""; width: 10px; height: 5px; border: solid var(--accent); border-width: 0 0 2px 2px; transform: translateY(-1px) rotate(-45deg) scale(0); transition: transform .25s var(--ease); }
-.svc strong { margin-top: auto; font: 400 1.35rem/1 var(--f-display); text-transform: uppercase; }
+/* title shrinks with its tile (cqi = % of tile width) only when a long word like MANAGEMENT would not fit */
+.svc__card { container-type: inline-size; }
+.svc strong { margin-top: auto; font: 400 min(1.35rem, 18cqi)/1 var(--f-display); text-transform: uppercase; }
 .svc small { font-size: .74rem; color: var(--muted-l); }
 .svc label:hover .svc__card { transform: translateY(-3px); }
 .svc input:checked + .svc__card { background: var(--accent); border-color: var(--accent); color: #fff; box-shadow: inset 1.5px 1.5px 1px rgba(255, 255, 255, .35), inset -2px -3px 6px rgba(0, 0, 0, .2); }
@@ -450,8 +457,35 @@ mark.brush {
 .about__facts span { font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted-l); }
 
 /* ---------- tím ---------- */
-.team { list-style: none; padding: 0; margin: 0; display: grid; gap: 40px 24px; }
-.member img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 18px; margin-bottom: 18px; }
+/* mobile/tablet: one person per row, no logo. >= 900px: Alexa | logo | Martin (see media query below) */
+.team { list-style: none; padding: 0; margin: 0; display: grid; gap: 48px; max-width: 460px; }
+.team__logo { display: none; }
+/* photo = "trading card": main.js sets --rx/--ry (tilt) and --gx/--gy (glare spot) from the mouse */
+.member__card {
+  position: relative; margin-bottom: 18px; border-radius: 18px; overflow: hidden; isolation: isolate;
+  transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform .6s var(--ease), box-shadow .6s var(--ease);
+  box-shadow: 0 18px 40px -24px rgba(42, 33, 71, .55);
+}
+.member__card img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; transition: filter .7s var(--ease); }
+.member__glare {
+  position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .5s;
+  background:
+    radial-gradient(circle at var(--gx, 50%) var(--gy, 30%), rgba(255, 255, 255, .55), rgba(255, 255, 255, 0) 45%),
+    linear-gradient(115deg, rgba(201, 184, 238, 0) 30%, rgba(201, 184, 238, .35) 48%, rgba(255, 255, 255, .25) 52%, rgba(201, 184, 238, 0) 70%);
+  background-size: 100% 100%, 250% 250%;
+  background-position: 0 0, var(--gx, 50%) var(--gy, 50%);
+  mix-blend-mode: soft-light;
+}
+.member.is-active .member__card { box-shadow: 0 34px 60px -26px rgba(42, 33, 71, .7); transition-duration: .15s, .6s; }
+.member.is-active .member__card img { filter: none; }
+.member.is-active .member__glare { opacity: 1; }
+/* stacked (phones/tablets): the card in the middle of the screen glows */
+@media (max-width: 899.98px) {
+  .member.is-active .member__card {
+    box-shadow: 0 0 0 2px rgba(201, 184, 238, .9), 0 0 46px 4px rgba(201, 184, 238, .85), 0 30px 60px -28px rgba(74, 58, 138, .6);
+  }
+}
 .member p { margin: 6px 0 0; font-size: .78rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted-l); }
 
 /* ---------- klienti (logá) ---------- */
@@ -500,6 +534,11 @@ details[open]::details-content { block-size: auto; }
 /* ---------- kontakt ---------- */
 .contact { background: var(--lav) radial-gradient(60% 40% at 100% 0%, rgba(74, 58, 138, .1), transparent); }
 .contact__grid { display: grid; gap: 48px; }
+/* min-width: 0 = a long word can never make a column wider than the screen */
+.contact__grid > * { min-width: 0; }
+/* the heading scales with its own column (cqi = % of column width), so "rozbehnúť." always fits next to the form */
+.contact__grid > div { container-type: inline-size; }
+.contact h2 { font-size: min(clamp(3.4rem, 13vw, 9.5rem), 15.5cqi); }
 .contact__info { list-style: none; padding: 0; margin: 0; display: grid; gap: 18px; }
 .contact__info li { display: grid; gap: 8px; justify-items: start; }
 .contact__info a, .contact__info li > span:last-child { font: 400 clamp(1.3rem, 5vw, 1.8rem)/1.15 var(--f-display); text-transform: uppercase; text-decoration: none; }
@@ -526,8 +565,9 @@ details[open]::details-content { block-size: auto; }
 .pill input:checked + span { background: var(--accent); color: #fff; border-color: var(--accent); }
 .pill input:focus-visible + span, .consent input:focus-visible + span::before { outline: 2px solid var(--accent); outline-offset: 2px; }
 .consent { position: relative; display: flex; font-size: .82rem; color: var(--muted-l); cursor: pointer; }
-.consent span { display: flex; gap: 12px; }
-.consent span::before { content: ""; flex: none; width: 20px; height: 20px; border-radius: 5px; border: 1.5px solid rgba(42, 33, 71, .5); margin-top: 1px; }
+/* block (not flex), so the text and the privacy link wrap as one paragraph; the checkbox sits in the left padding */
+.consent span { display: block; position: relative; padding-left: 32px; }
+.consent span::before { content: ""; position: absolute; left: 0; top: 1px; width: 20px; height: 20px; border-radius: 5px; border: 1.5px solid rgba(42, 33, 71, .5); }
 .consent input:checked + span::before { background: var(--accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 10l3 3 7-7' fill='none' stroke='%23FFFFFF' stroke-width='2.4'/%3E%3C/svg%3E"); border-color: var(--accent); }
 .hp { position: absolute; left: -9999px; }
 .form .btn { justify-self: start; }
@@ -544,7 +584,7 @@ details[open]::details-content { block-size: auto; }
 .footer a { text-decoration: none; font-weight: 600; font-size: .9rem; display: inline-flex; align-items: center; gap: 8px; min-height: 32px; }
 .footer a:hover { color: var(--accent); }
 .footer svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; }
-.footer__legal { font: 600 .66rem/1 var(--f-body); letter-spacing: .18em; text-transform: uppercase; color: #6A6A6A; }
+.footer__legal { font: 600 .66rem/1 var(--f-body); letter-spacing: .18em; text-transform: uppercase; color: #5E5E5E; }
 .footer__company { margin: 0; font-size: .72rem; line-height: 1.6; color: #5E5E5E; }
 details p a { text-underline-offset: 3px; }
 
@@ -564,7 +604,6 @@ details p a { text-underline-offset: 3px; }
 @media (min-width: 640px) {
   .wrap { width: min(100% - 64px, 1320px); }
   .cards { grid-template-columns: repeat(2, 1fr); }
-  .team { grid-template-columns: repeat(2, 1fr); }
   .seg { grid-template-columns: repeat(3, 1fr); }
   .seg--term { grid-template-columns: repeat(4, 1fr); }
   .calc__step { padding: 28px; }
@@ -617,14 +656,23 @@ details p a { text-underline-offset: 3px; }
 
   .calc { grid-template-columns: 1.45fr 1fr; gap: 32px; }
   .calc__bar { display: none; }
-  .svc { grid-template-columns: repeat(3, 1fr); }
+  .svc { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .receipt { position: sticky; top: 96px; }
 
   .about__grid { grid-template-columns: 1fr 1fr; align-items: center; gap: 80px; }
-  .team { grid-template-columns: repeat(2, minmax(0, 420px)); gap: 28px; }
+  .team { grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 56px; max-width: 1180px; margin: 0 auto; }
+  .team__logo { display: grid; place-items: center; padding-bottom: 60px; } /* bottom padding = names under photos, so the logo sits at photo-middle */
+  .team__float { animation: team-float 6s ease-in-out infinite; }
+  /* main.js sets --lx/--ly/--lt (lean toward the mouse / the hovered person) */
+  .team__logo .logo-tile {
+    font-size: clamp(5.5rem, 10vw, 9rem);
+    transform: perspective(700px) translateX(var(--lt, 0px)) rotateX(var(--lx, 0deg)) rotateY(var(--ly, 0deg)) rotate(-4deg);
+    transition: transform .7s var(--ease);
+  }
+  @keyframes team-float { 50% { transform: translateY(-14px); } }
   .slide { flex-basis: 62%; }
   .faq { grid-template-columns: 1fr 1.6fr; gap: 64px; align-items: start; }
-  .contact__grid { grid-template-columns: 1fr 1.15fr; gap: 72px; align-items: start; }
+  .contact__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 72px; align-items: start; }
   .form { padding: 44px; }
 }
 
@@ -634,7 +682,7 @@ details p a { text-underline-offset: 3px; }
 }
 
 /* ---------- footer legal links ---------- */
-.footer__legal a { font: inherit; min-height: 0; }
+.footer__legal a { font: inherit; min-height: 24px; } /* 24px = minimum tap target */
 
 /* ---------- cookie consent ---------- */
 .ck {

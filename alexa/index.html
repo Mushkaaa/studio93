@@ -3,12 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>STUDIO 93 — Správa sociálnych sietí Liptov | Instagram, TikTok, Facebook</title>
-  <meta name="description" content="STUDIO 93 je social media agentúra z Liptova. Správa sociálnych sietí, foto a video obsah, reels, TikTok, copywriting a reklama pre biznisy v Liptovskom Mikuláši, Ružomberku a Liptovskom Hrádku.">
-  <meta name="keywords" content="správa sociálnych sietí Liptov, social media agentúra Liptovský Mikuláš, správa Instagramu Liptov, TikTok marketing Ružomberok, tvorba obsahu Liptov, reels, foto video Liptovský Hrádok, reklama na Facebooku">
+  <title>STUDIO 93 – Správa sociálnych sietí | Liptov, Ružomberok</title>
+  <meta name="description" content="Social media agentúra z Liptova: správa Instagramu, TikToku a Facebooku, foto, video, reels a reklama pre firmy v Liptovskom Mikuláši a Ružomberku.">
   <meta name="theme-color" content="#C9B8EE">
   <link rel="canonical" href="https://studio93liptov.sk/">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/favicon-48.png" type="image/png" sizes="48x48">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 
   <meta property="og:type" content="website">
   <meta property="og:locale" content="sk_SK">
@@ -25,26 +26,50 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "STUDIO 93",
-    "legalName": "IKIGAI PROJECTS s. r. o.",
-    "identifier": { "@type": "PropertyValue", "propertyID": "IČO", "value": "57431311" },
-    "description": "Správa sociálnych sietí, tvorba obsahu, reels, TikTok a platená reklama pre biznisy na Liptove.",
-    "url": "https://studio93liptov.sk/",
-    "image": "https://studio93liptov.sk/assets/og-image.png",
-    "email": "manager@studio93liptov.sk",
-    "address": { "@type": "PostalAddress", "addressLocality": "Liptovský Mikuláš", "addressRegion": "Žilinský kraj", "addressCountry": "SK" },
-    "areaServed": ["Liptov", "Liptovský Mikuláš", "Ružomberok", "Liptovský Hrádok"],
-    "sameAs": ["https://www.instagram.com/studio93.liptov/"]
+    "@graph": [
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://studio93liptov.sk/#business",
+        "name": "STUDIO 93",
+        "legalName": "IKIGAI PROJECTS s. r. o.",
+        "identifier": { "@type": "PropertyValue", "propertyID": "IČO", "value": "57431311" },
+        "description": "Social media agentúra z Liptova: správa sociálnych sietí, tvorba obsahu, reels, TikTok, web dizajn a platená reklama pre firmy v Liptovskom Mikuláši, Ružomberku a Liptovskom Hrádku.",
+        "url": "https://studio93liptov.sk/",
+        "logo": "https://studio93liptov.sk/assets/logo.png",
+        "image": "https://studio93liptov.sk/assets/og-image.png",
+        "email": "manager@studio93liptov.sk",
+        "address": { "@type": "PostalAddress", "addressLocality": "Liptovský Mikuláš", "addressRegion": "Žilinský kraj", "addressCountry": "SK" },
+        "areaServed": [
+          { "@type": "AdministrativeArea", "name": "Liptov" },
+          { "@type": "City", "name": "Liptovský Mikuláš" },
+          { "@type": "City", "name": "Ružomberok" },
+          { "@type": "City", "name": "Liptovský Hrádok" }
+        ],
+        "knowsLanguage": ["sk", "en"],
+        "sameAs": ["https://www.instagram.com/studio93.liptov/"]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://studio93liptov.sk/#website",
+        "url": "https://studio93liptov.sk/",
+        "name": "STUDIO 93",
+        "inLanguage": "sk",
+        "publisher": { "@id": "https://studio93liptov.sk/#business" }
+      }
+    ]
   }
   </script>
 
   <!-- ?v= forces browsers to fetch the new file — bump it whenever styles.css / main.js change -->
+  <!-- headline font (Anton) loads first, so the big hero title doesn't jump when it swaps in -->
+  <link rel="preload" href="assets/fonts/anton-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/anton-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/fonts/fonts.css?v=2">
-  <link rel="stylesheet" href="styles.css?v=2">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
-  <script src="main.js?v=2" defer></script>
+  <link rel="stylesheet" href="styles.css?v=7">
+  <!-- integrity = fingerprint of the exact file; the browser refuses it if the CDN copy is ever changed. Update it if you change the GSAP version -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+  <script src="main.js?v=7" defer></script>
 </head>
 <body>
   <a class="skip" href="#main" data-en="Skip to content">Preskočiť na obsah</a>
@@ -66,7 +91,7 @@
         <a href="#kontakt" data-en="Contact">Kontakt</a>
       </nav>
       <div class="nav__right">
-        <button class="lang" type="button" aria-label="Switch to English">EN</button>
+        <button class="lang" type="button" aria-label="EN — Switch to English">EN</button>
         <a class="btn btn--sm magnetic nav__cta" href="#kontakt" data-en="Let's talk">Poďme na to</a>
         <button class="nav__burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menu"><span></span><span></span></button>
       </div>
@@ -98,7 +123,7 @@
           <span class="label label--accent">EST. 2025</span>
         </div>
 
-        <h1 id="hero-title" class="hero__title reveal" data-en="Your business.<br>Our <span class='spray'>feed.</span>">Tvoj biznis.<br>Náš <span class="spray">feed.</span></h1>
+        <h1 id="hero-title" class="hero__title reveal" data-en="<span class='hero__kicker'>Social media management · Liptov</span>Your business.<br>Our <span class='spray'>feed.</span>"><span class="hero__kicker">Správa sociálnych sietí · Liptov</span>Tvoj biznis.<br>Náš <span class="spray">feed.</span></h1>
 
         <p class="hero__sub reveal" data-en="We run social media (Instagram, TikTok and Facebook) for local businesses. Photo, video, reels, copy and ads — from the first idea to results you can actually count. We're based in Liptov.">Robíme sociálne siete (Instagram, TikTok a Facebook) pre lokálne biznisy. Foto, video, reels, texty aj reklamy — od prvého nápadu po výsledky, ktoré vidíš v číslach. Sídlime na Liptove.</p>
 
@@ -134,43 +159,48 @@
           <p class="lead" data-en="No templates off the internet. Every post, reel and campaign is <mark class='brush'>made to measure</mark> for your business.">Žiadne šablóny z internetu. Každý post, reel aj kampaň šijeme <mark class="brush">na mieru</mark> tvojmu biznisu.</p>
         </header>
 
+        <!-- DRAFT: druhá veta v každej karte + blok „Pre koho pracujeme“ pod kartami sú návrh od Claude — skontroluj a uprav -->
         <div class="cards">
           <article class="tag-card reveal">
             <div class="tag-card__top"><span class="tag-card__hole"></span><span>ART. 93—01</span><span>IG · FB · TT</span></div>
             <h3 data-en="Social media management">Správa sociálnych sietí</h3>
-            <p data-en="We plan, post and reply. Your profile stays alive while you're busy with other things.">Plánujeme, postujeme, odpisujeme. Tvoj profil žije, kým ty makáš na iných veciach.</p>
+            <p data-en="We plan, post and reply. Your profile stays alive while you're busy with other things. Instagram, Facebook and TikTok for businesses in Liptovský Mikuláš, Ružomberok and around, with a content plan and copy included.">Plánujeme, postujeme, odpisujeme. Tvoj profil žije, kým ty makáš na iných veciach. Instagram, Facebook aj TikTok pre firmy v Liptovskom Mikuláši, Ružomberku a okolí, s plánom obsahu a textami v cene.</p>
             <div class="tag-card__foot"><span class="barcode"></span><span>01</span></div>
           </article>
           <article class="tag-card reveal">
             <div class="tag-card__top"><span class="tag-card__hole"></span><span>ART. 93—02</span><span>FOTO / VIDEO</span></div>
             <h3 data-en="Content creation">Tvorba obsahu</h3>
-            <p data-en="Together we set your content pillars and we take care of the rest: we show up, shoot photos and roll video. The result is a film look that stops the scroll and sticks in the memory.">Spolu nastavíme content piliere a my sa postaráme o zvyšok: prídeme, nafotíme a natočíme. Výsledkom je filmový obraz, ktorý zastaví scroll a zostane v pamäti.</p>
+            <p data-en="Together we set your content pillars and we take care of the rest: we show up, shoot photos and roll video. The result is a film look that stops the scroll and sticks in the memory. We shoot photos and video right at your place, anywhere in Liptov.">Spolu nastavíme content piliere a my sa postaráme o zvyšok: prídeme, nafotíme a natočíme. Výsledkom je filmový obraz, ktorý zastaví scroll a zostane v pamäti. Fotíme a natáčame priamo u teba v prevádzke, kdekoľvek na Liptove.</p>
             <div class="tag-card__foot"><span class="barcode"></span><span>02</span></div>
           </article>
           <article class="tag-card reveal">
             <div class="tag-card__top"><span class="tag-card__hole"></span><span>ART. 93—03</span><span>9:16</span></div>
             <h3>Reels &amp; TikTok</h3>
-            <p data-en="Short videos with a hook in the first second. We catch trends before they burn out.">Krátke videá s hookom v prvej sekunde. Trendy chytáme skôr, než vyhoria.</p>
+            <p data-en="Short videos with a hook in the first second. We catch trends before they burn out. Script, editing, captions and trending audio: Instagram reels and TikTok videos people in the region watch to the end.">Krátke videá s hookom v prvej sekunde. Trendy chytáme skôr, než vyhoria. Scenár, strih, titulky aj trendové audio: reels na Instagram a videá na TikTok, ktoré ľudia z regiónu dopozerajú.</p>
             <div class="tag-card__foot"><span class="barcode"></span><span>03</span></div>
           </article>
           <article class="tag-card reveal">
             <div class="tag-card__top"><span class="tag-card__hole"></span><span>ART. 93—04</span><span>WEB · E-SHOP</span></div>
             <h3>Web design</h3>
-            <p data-en="Websites and e-shops that look as good as your feed. Fast, mobile-first and ready to sell.">Weby a e-shopy, ktoré vyzerajú rovnako dobre ako tvoj feed. Rýchle, mobilné a pripravené predávať.</p>
+            <p data-en="Websites and e-shops that look as good as your feed. Fast, mobile-first and ready to sell. Landing pages, business websites and e-shops, with custom design and a mobile version.">Weby a e-shopy, ktoré vyzerajú rovnako dobre ako tvoj feed. Rýchle, mobilné a pripravené predávať. Landing page, firemný web aj e-shop, s dizajnom na mieru a mobilnou verziou.</p>
             <div class="tag-card__foot"><span class="barcode"></span><span>04</span></div>
           </article>
           <article class="tag-card reveal">
             <div class="tag-card__top"><span class="tag-card__hole"></span><span>ART. 93—05</span><span>META · TT ADS</span></div>
             <h3 data-en="Paid ads">Platená reklama</h3>
-            <p data-en="Meta and TikTok ads targeted at people around you. Every euro has a job.">Meta a TikTok Ads cielené na ľudí z okolia. Každé euro má svoju úlohu.</p>
+            <p data-en="Meta and TikTok ads targeted at people around you. Every euro has a job. We set up Facebook, Instagram and TikTok campaigns for Liptovský Mikuláš, Ružomberok, Liptovský Hrádok or all of Slovakia.">Meta a TikTok Ads cielené na ľudí z okolia. Každé euro má svoju úlohu. Kampane na Facebooku, Instagrame a TikToku nastavíme pre Liptovský Mikuláš, Ružomberok, Liptovský Hrádok alebo celé Slovensko.</p>
             <div class="tag-card__foot"><span class="barcode"></span><span>05</span></div>
           </article>
           <article class="tag-card reveal">
             <div class="tag-card__top"><span class="tag-card__hole"></span><span>ART. 93—06</span><span>DATA</span></div>
             <h3 data-en="Strategy &amp; reporting">Stratégia a reporting</h3>
-            <p data-en="A clear plan, a monthly report and numbers without fluff. You'll know what works and why.">Jasný plán, mesačný report a čísla bez omáčok. Vieš, čo funguje a prečo.</p>
+            <p data-en="A clear plan, a monthly report and numbers without fluff. You'll know what works and why. We start with an audit of your profiles and competitors, then a content plan for the coming months.">Jasný plán, mesačný report a čísla bez omáčok. Vieš, čo funguje a prečo. Na začiatok audit tvojich profilov a konkurencie, potom plán obsahu na ďalšie mesiace.</p>
             <div class="tag-card__foot"><span class="barcode"></span><span>06</span></div>
           </article>
+        </div>
+        <div class="svc-for reveal">
+          <h3 data-en="Who we work for">Pre koho pracujeme</h3>
+          <p data-en="We're a social media agency from Liptov for small and medium-sized businesses that want people nearby to see them — and come by. It's for you if you run a café, restaurant, guesthouse, barbershop, salon, craft workshop or a manufacturing business in Liptovský Mikuláš, Ružomberok, Liptovský Hrádok or anywhere in the Liptov region. We also do social media management and content creation for clients from all over Slovakia.">Sme social media agentúra z Liptova pre malé a stredné firmy, ktoré chcú, aby ich ľudia z okolia videli — a prišli. Je to pre teba, ak máš kaviareň, reštauráciu, penzión, barbershop, salón, remeselnú dielňu alebo výrobnú firmu v Liptovskom Mikuláši, Ružomberku, Liptovskom Hrádku či kdekoľvek na Liptove. Správu sociálnych sietí a tvorbu obsahu robíme aj pre klientov z celého Slovenska.</p>
         </div>
       </div>
     </section>
@@ -180,42 +210,42 @@
       <div class="wrap">
         <header class="sec-head reveal">
           <div class="sec-head__top"><span class="marker" data-en="work">práce</span><span class="label">93 / 02</span></div>
-          <h2 id="prace-title" data-en="A feed<br>that sells">Feed, ktorý<br>predáva</h2>
+          <h2 id="prace-title" data-en="A feed<br>that<br>sells">Feed,<br>ktorý<br>predáva</h2>
         </header>
 
         <!-- PLACEHOLDER: karty s názvom „Reel“ nemajú doplneného klienta — doplň meno klienta do <small> -->
         <div class="stage">
           <div class="ring" id="ring">
             <div class="card">
-              <video class="ph" src="assets/reels/barbershop.mp4" poster="assets/reels/barbershop.jpg" width="540" height="960" muted loop playsinline preload="none" aria-label="Reel pre barbershop"></video>
+              <video class="ph" src="assets/reels/barbershop.mp4" poster="assets/reels/barbershop.webp" width="540" height="960" muted loop playsinline preload="none" aria-label="Reel pre barbershop"></video>
               <div class="card__top"><small>Barbershop</small><span class="card__play" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M4 2.5v11l9-5.5z" fill="currentColor"/></svg></span></div>
             </div>
             <div class="card">
-              <video class="ph" src="assets/reels/panduvia-1.mp4" poster="assets/reels/panduvia-1.jpg" width="540" height="960" muted loop playsinline preload="none" aria-label="Reel pre Panduvia"></video>
+              <video class="ph" src="assets/reels/panduvia-1.mp4" poster="assets/reels/panduvia-1.webp" width="540" height="960" muted loop playsinline preload="none" aria-label="Reel pre Panduvia"></video>
               <div class="card__top"><small>Panduvia</small><span class="card__play" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M4 2.5v11l9-5.5z" fill="currentColor"/></svg></span></div>
             </div>
             <div class="card">
-              <video class="ph" src="assets/reels/kovoliptov.mp4" poster="assets/reels/kovoliptov.jpg" width="540" height="960" muted loop playsinline preload="none" aria-label="Reel pre Kovoliptov"></video>
+              <video class="ph" src="assets/reels/kovoliptov.mp4" poster="assets/reels/kovoliptov.webp" width="540" height="960" muted loop playsinline preload="none" aria-label="Reel pre Kovoliptov"></video>
               <div class="card__top"><small>Kovoliptov</small><span class="card__play" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M4 2.5v11l9-5.5z" fill="currentColor"/></svg></span></div>
             </div>
             <div class="card">
-              <video class="ph" src="assets/reels/reel-1.mp4" poster="assets/reels/reel-1.jpg" width="540" height="960" muted loop playsinline preload="none" aria-label="Reel z dielne"></video>
+              <video class="ph" src="assets/reels/reel-1.mp4" poster="assets/reels/reel-1.webp" width="540" height="960" muted loop playsinline preload="none" aria-label="Reel z dielne"></video>
               <div class="card__top"><small>Reel</small><span class="card__play" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M4 2.5v11l9-5.5z" fill="currentColor"/></svg></span></div>
             </div>
             <div class="card">
-              <video class="ph" src="assets/reels/panduvia-2.mp4" poster="assets/reels/panduvia-2.jpg" width="540" height="960" muted loop playsinline preload="none" aria-label="Reel pre Panduvia: 3 mýty o pieskovaní"></video>
+              <video class="ph" src="assets/reels/panduvia-2.mp4" poster="assets/reels/panduvia-2.webp" width="540" height="960" muted loop playsinline preload="none" aria-label="Reel pre Panduvia: 3 mýty o pieskovaní"></video>
               <div class="card__top"><small>Panduvia</small><span class="card__play" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M4 2.5v11l9-5.5z" fill="currentColor"/></svg></span></div>
             </div>
             <div class="card">
-              <video class="ph" src="assets/reels/dielna.mp4" poster="assets/reels/dielna.jpg" width="540" height="960" muted loop playsinline preload="none" aria-label="Reel: príprava dielne na zimu"></video>
+              <video class="ph" src="assets/reels/dielna.mp4" poster="assets/reels/dielna.webp" width="540" height="960" muted loop playsinline preload="none" aria-label="Reel: príprava dielne na zimu"></video>
               <div class="card__top"><small>Reel</small><span class="card__play" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M4 2.5v11l9-5.5z" fill="currentColor"/></svg></span></div>
             </div>
             <div class="card">
-              <video class="ph" src="assets/reels/panduvia-3.mp4" poster="assets/reels/panduvia-3.jpg" width="540" height="960" muted loop playsinline preload="none" aria-label="Reel pre Panduvia: 5 znakov"></video>
+              <video class="ph" src="assets/reels/panduvia-3.mp4" poster="assets/reels/panduvia-3.webp" width="540" height="960" muted loop playsinline preload="none" aria-label="Reel pre Panduvia: 5 znakov"></video>
               <div class="card__top"><small>Panduvia</small><span class="card__play" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M4 2.5v11l9-5.5z" fill="currentColor"/></svg></span></div>
             </div>
             <div class="card">
-              <video class="ph" src="assets/reels/trend.mp4" poster="assets/reels/trend.jpg" width="540" height="960" muted loop playsinline preload="none" aria-label="Trendový reel"></video>
+              <video class="ph" src="assets/reels/trend.mp4" poster="assets/reels/trend.webp" width="540" height="960" muted loop playsinline preload="none" aria-label="Trendový reel"></video>
               <div class="card__top"><small>Reel</small><span class="card__play" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M4 2.5v11l9-5.5z" fill="currentColor"/></svg></span></div>
             </div>
           </div>
@@ -422,7 +452,7 @@
       <div class="wrap about__grid">
         <div class="about__photos">
           <figure class="about__main reveal crack-wrap">
-            <div class="about__img"><img class="ph" data-parallax="0.08" src="assets/about-1.jpg" width="900" height="900" loading="lazy" alt="Fotka zo Syren shootu: modelka v mikine pri veľkej Ownership Card"></div>
+            <div class="about__img"><img class="ph" data-parallax="0.08" src="assets/about-1.webp" width="900" height="900" loading="lazy" alt="Fotka zo Syren shootu: modelka v mikine pri veľkej Ownership Card"></div>
             <svg class="crack" viewBox="0 0 400 500" preserveAspectRatio="none" aria-hidden="true">
               <g>
                 <path pathLength="1" d="M262 196 L300 150 L318 112 L352 78 L372 30 L400 0"/>
@@ -441,7 +471,7 @@
             <figcaption>FW25 — SYREN CREATIVE STUDIO</figcaption>
           </figure>
           <figure class="about__second reveal">
-            <img class="ph" src="assets/about-2.jpg" width="748" height="688" loading="lazy" alt="Fotka moodboardu značky Syren">
+            <img class="ph" src="assets/about-2.webp" width="748" height="688" loading="lazy" alt="Fotka moodboardu značky Syren">
             <span class="tape tape--tl"></span>
           </figure>
         </div>
@@ -474,14 +504,26 @@
         </header>
 
         <!-- PLACEHOLDER: fotky aj pozície sú ukážkové — nahraď reálnymi portrétmi a pozíciami -->
+        <!-- veľké obrazovky: Alexa | logo | Martin; mobil: pod sebou, bez loga. Fotky sú čiernobiele, po prejdení myšou farebné -->
         <ul class="team">
-          <li class="member reveal">
-            <img class="bw ph" src="https://picsum.photos/seed/s93-team-1/600/750?grayscale" width="600" height="750" loading="lazy" alt="Ukážka: portrét — Alexa Vachálková">
+          <li class="member reveal" data-side="left">
+            <div class="member__card">
+              <img class="bw ph" src="assets/team/alexa.webp" width="600" height="750" loading="lazy" alt="Portrét — Alexa Vachálková">
+              <span class="member__glare" aria-hidden="true"></span>
+            </div>
             <h3>Alexa Vachálková</h3>
             <p data-en="Role in the team">Pozícia v tíme</p>
           </li>
-          <li class="member reveal">
-            <img class="bw ph" src="https://picsum.photos/seed/s93-team-2/600/750?grayscale" width="600" height="750" loading="lazy" alt="Ukážka: portrét — Martin Pospíšil">
+          <li class="team__logo reveal" aria-hidden="true">
+            <div class="team__float">
+              <span class="logo-tile"><span class="tape tape--tl"></span><span class="logo93"><b>93</b><small>STUDIO</small></span></span>
+            </div>
+          </li>
+          <li class="member reveal" data-side="right">
+            <div class="member__card">
+              <img class="bw ph" src="assets/team/martin.webp" width="600" height="750" loading="lazy" alt="Portrét — Martin Pospíšil">
+              <span class="member__glare" aria-hidden="true"></span>
+            </div>
             <h3>Martin Pospíšil</h3>
             <p data-en="Role in the team">Pozícia v tíme</p>
           </li>
@@ -635,7 +677,7 @@
           <a href="#kontakt" data-en="Contact">Kontakt</a>
         </nav>
         <div class="footer__social">
-          <a href="https://www.instagram.com/studio93.liptov/" target="_blank" rel="noopener" aria-label="STUDIO 93 na Instagrame">
+          <a href="https://www.instagram.com/studio93.liptov/" target="_blank" rel="noopener" aria-label="studio93.liptov — STUDIO 93 na Instagrame">
             <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg> studio93.liptov
           </a>
           <!-- PLACEHOLDER: doplň TikTok / Facebook odkazy, keď existujú -->
@@ -656,7 +698,7 @@
   <!-- ============ COOKIES (consent) ============ -->
   <div class="ck light" id="cookies" role="dialog" aria-labelledby="ck-title" aria-describedby="ck-text" hidden>
     <p class="ck__title" id="ck-title" data-en="Cookies? Only with your OK.">Cookies? Len s tvojím OK.</p>
-    <p class="ck__text" id="ck-text" data-en="We only store what the site needs to work (your language and this choice). Analytics and marketing cookies (Google Analytics, Meta Pixel, TikTok Pixel) are switched on only if you agree. <a href='ochrana-osobnych-udajov.html#cookies'>More info</a>">Ukladáme len to, čo web potrebuje na fungovanie (jazyk a túto voľbu). Analytické a marketingové cookies (Google Analytics, Meta Pixel, TikTok Pixel) zapneme, iba ak súhlasíš. <a href="ochrana-osobnych-udajov.html#cookies">Viac info</a></p>
+    <p class="ck__text" id="ck-text" data-en="We only store what the site needs to work (your language and this choice). Analytics and marketing cookies (Google Analytics, Meta Pixel, TikTok Pixel) are switched on only if you agree. <a href='ochrana-osobnych-udajov.html#cookies'>More about cookies</a>">Ukladáme len to, čo web potrebuje na fungovanie (jazyk a túto voľbu). Analytické a marketingové cookies (Google Analytics, Meta Pixel, TikTok Pixel) zapneme, iba ak súhlasíš. <a href="ochrana-osobnych-udajov.html#cookies">Viac info</a></p>
     <div class="ck__prefs" hidden>
       <label class="toggle"><input type="checkbox" checked disabled><i class="sw"></i><span data-en="Necessary — always on">Nevyhnutné — vždy zapnuté</span></label>
       <label class="toggle"><input type="checkbox" name="analytics"><i class="sw"></i><span data-en="Analytics — Google Analytics">Analytické — Google Analytics</span></label>
