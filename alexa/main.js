@@ -462,14 +462,18 @@ form.addEventListener('submit', async e => {
   const t = msg[root.lang] || msg.sk;
   const data = new FormData(form);
   if (data.get('_honey')) return; // bot filled the hidden field
-  // goes to our Apps Script (form-mailer/Code.gs); multi-value fields (siete) get joined so none are lost
+  // goes to Web3Forms, which emails it to us; multi-value fields (siete) get joined so none are lost
   const body = {
-    meno: data.get('meno'),
-    firma: data.get('firma') || '-',
+    access_key: data.get('access_key'),
+    subject: `Nový dopyt — ${data.get('firma') || data.get('meno')}`,
+    from_name: 'STUDIO 93 web',
+    replyto: data.get('email'),
+    Meno: data.get('meno'),
+    Firma: data.get('firma') || '-',
     email: data.get('email'),
-    telefon: data.get('telefon') || '-',
-    siete: data.getAll('siete').join(', ') || '-',
-    sprava: data.get('sprava'),
+    'Telefón': data.get('telefon') || '-',
+    Siete: data.getAll('siete').join(', ') || '-',
+    'Správa': data.get('sprava'),
   };
   status.className = 'form__status';
   status.textContent = t.sending;
@@ -477,11 +481,10 @@ form.addEventListener('submit', async e => {
     const res = await fetch(form.action, {
       method: 'POST',
       body: JSON.stringify(body),
-      // text/plain keeps it a "simple" request — Apps Script can't answer a CORS preflight
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
     });
     const json = await res.json().catch(() => ({}));
-    if (!res.ok || !json.ok) throw new Error(json.error || res.status);
+    if (!res.ok || !json.success) throw new Error(json.message || res.status);
     form.reset();
     status.classList.add('ok');
     status.textContent = t.ok;

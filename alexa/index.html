@@ -74,7 +74,7 @@
   <!-- integrity = fingerprint of the exact file; the browser refuses it if the CDN copy is ever changed. Update it if you change the GSAP version -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
-  <script src="main.js?v=9" defer></script>
+  <script src="main.js?v=10" defer></script>
 </head>
 <body>
   <a class="skip" href="#main" data-en="Skip to content">Preskočiť na obsah</a>
@@ -647,8 +647,9 @@
           </ul>
         </div>
 
-        <!-- PLACEHOLDER: nasaď form-mailer/Code.gs ako Google Apps Script web app a vlož sem jeho /exec URL -->
-        <form class="form reveal" action="https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec" method="POST" data-mail="manager@studio93liptov.sk">
+        <!-- správy posiela Web3Forms (web3forms.com) na manager.studio93@gmail.com; kľúč môže byť verejný -->
+        <form class="form reveal" action="https://api.web3forms.com/submit" method="POST" data-mail="manager@studio93liptov.sk">
+          <input type="hidden" name="access_key" value="fdefb0c0-e789-48bf-87cd-8f5ef51b5205">
           <div class="form__row">
             <label class="field"><span data-en="Name *">Meno *</span><input name="meno" autocomplete="name" required></label>
             <label class="field"><span data-en="Business">Firma</span><input name="firma" autocomplete="organization"></label>
