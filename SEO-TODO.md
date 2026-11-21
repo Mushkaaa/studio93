@@ -13,17 +13,18 @@ Fill in the blanks, tick what's done, and send this file back to Claude.
   - File: `__________`
   - Short description of what's in the photo (for the alt text): `__________`
 
-- [ ] **Phone number**: goes on the page (contact section) and into Google's structured data
-  - Number: `__________`
+- [x] **Phone numbers**: added to the contact section and structured data (2026-11-21)
+  - Alexa `+421 951 291 552` (main number in structured data), Martin `+421 915 580 741`
 
-- [ ] **Public address**: what Google should show (must match your Google Business Profile exactly)
-  - [ ] Street address: `__________`
-  - [ ] Or no street, only a service area ("Liptov")
-  - The footer keeps showing the Trnava registered office either way. That's the legal company info.
+- [x] **Public address**: added to structured data (2026-11-21)
+  - [x] Street address: `Priemyselná 1, 031 01 Liptovský Mikuláš`
+  - The footer keeps showing the Trnava registered office. That's the legal company info.
 
-- [ ] **Contact form URL**: right now the form goes nowhere (`YOUR_SCRIPT_ID`)
-  - Deploy `form-mailer/Code.gs` as a Google Apps Script web app and copy its `/exec` URL
-  - URL: `__________`
+- [x] **Contact form**: sends through Web3Forms to `manager.studio93@gmail.com` (2026-11-21)
+  - Tested locally: Web3Forms answered "Form submitted successfully!"
+  - [ ] Check that the test e-mail ("Nový dopyt — TEST firma") arrived in Gmail
+  - [ ] After uploading, send one test message from the live site
+  - [ ] Check the free plan's monthly limit at [web3forms.com/pricing](https://web3forms.com/pricing)
 
 - [ ] **Service text**: proofread the draft Claude wrote
   - The second sentence on each of the 6 service cards + the new "Pre koho pracujeme" paragraph under them (Služby section, marked with a `DRAFT` comment in `alexa/index.html`). The English versions are in the `data-en` attributes next to them
@@ -37,7 +38,7 @@ Fill in the blanks, tick what's done, and send this file back to Claude.
     2. `__________`
 
 - [x] **Team**: real photos and roles added (2026-11-20)
-  - Roles: Alexa `Sociálne siete, obsah a všetko ostatné`, Martin `Web a softvér`
+  - Roles: Alexa `Sociálne siete, obsah a všetko ostatné`, Martin `Web, softvér a technické zázemie`
 
 - [ ] **Unnamed reels**: 3 portfolio reels are labelled just "Reel"
   - Client names for `reel-1`, `dielna`, `trend`: `__________`
@@ -50,8 +51,7 @@ Fill in the blanks, tick what's done, and send this file back to Claude.
   - If you have a real logo file (square, at least 512 × 512 px, PNG or SVG), send it and Claude swaps it in
   - File: `__________`
 
-- [ ] **Opening hours** (optional): only if clients can visit you or call at set times. Goes into Google's structured data
-  - Hours: `__________` (or "not needed")
+- [x] **Opening hours** (optional): not added, clients are seen by appointment only (2026-11-21)
 
 - [ ] **Separate service pages** (optional, bigger job, best for ranking on more keywords)
   - Which services should get their own page? (e.g. správa sociálnych sietí, tvorba obsahu, reels & TikTok, web design, reklama)
